@@ -1,81 +1,81 @@
 [submodule "fpga/fpga-shells"]
 	path = fpga/fpga-shells
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/fpga-fpga-shells.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1fpga-fpga-shells.git
 [submodule "generators/bar-fetchers"]
 	path = generators/bar-fetchers
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-bar-fetchers.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-bar-fetchers.git
 [submodule "generators/boom"]
 	path = generators/boom
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-boom.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-boom.git
 [submodule "generators/caliptra-aes-acc"]
 	path = generators/caliptra-aes-acc
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-caliptra-aes-acc.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-caliptra-aes-acc.git
 [submodule "generators/constellation"]
 	path = generators/constellation
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/constellation.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1constellation.git
 [submodule "generators/cva6"]
 	path = generators/cva6
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/cva6.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1cva6.git
 [submodule "generators/diplomacy"]
 	path = generators/diplomacy
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-diplomacy.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-diplomacy.git
 [submodule "generators/fft-generator"]
 	path = generators/fft-generator
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-fft-generator.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-fft-generator.git
 [submodule "generators/gemmini"]
 	path = generators/gemmini
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/gemmini.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1gemmini.git
 [submodule "generators/hardfloat"]
 	path = generators/hardfloat
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/hardfloat.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1hardfloat.git
 [submodule "generators/ibex"]
 	path = generators/ibex
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/ibex.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1ibex.git
 [submodule "generators/icenet"]
 	path = generators/icenet
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-icenet.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-icenet.git
 [submodule "generators/mempress"]
 	path = generators/mempress
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-mempress.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-mempress.git
 [submodule "generators/nvdla"]
 	path = generators/nvdla
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/nvdla.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1nvdla.git
 [submodule "generators/riscv-sodor"]
 	path = generators/riscv-sodor
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-riscv-sodor.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-riscv-sodor.git
 [submodule "generators/rocc-acc-utils"]
 	path = generators/rocc-acc-utils
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rocc-acc-utils.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-rocc-acc-utils.git
 [submodule "generators/rocket-chip"]
 	path = generators/rocket-chip
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rocket-chip.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-rocket-chip.git
 [submodule "generators/rocket-chip-blocks"]
 	path = generators/rocket-chip-blocks
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rocket-chip-blocks.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-rocket-chip-blocks.git
 [submodule "generators/rocket-chip-inclusive-cache"]
 	path = generators/rocket-chip-inclusive-cache
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rocket-chip-inclusive-cache.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-rocket-chip-inclusive-cache.git
 [submodule "generators/shuttle"]
 	path = generators/shuttle
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-shuttle.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-shuttle.git
 [submodule "generators/testchipip"]
 	path = generators/testchipip
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-testchipip.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-testchipip.git
 [submodule "sims/firesim"]
 	path = sims/firesim
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/sims-firesim.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1sims-firesim.git
 [submodule "software/baremetal-ide"]
 	path = software/baremetal-ide
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/software-baremetal-ide.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1software-baremetal-ide.git
 [submodule "software/coremark"]
 	path = software/coremark
 	url = https://github.com/ucb-bar/coremark-workload.git
 [submodule "software/embench/embench-iot"]
 	path = software/embench/embench-iot
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/software-embench-embench-iot.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1software-embench-embench-iot.git
 [submodule "software/firemarshal"]
 	path = software/firemarshal
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/software-firemarshal.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1software-firemarshal.git
 [submodule "software/nvdla-workload"]
 	path = software/nvdla-workload
 	url = https://github.com/ucb-bar/nvdla-workload.git
@@ -84,79 +84,79 @@
 	url = https://github.com/ucb-bar/spec2017-workload.git
 [submodule "toolchains/libgloss"]
 	path = toolchains/libgloss
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/toolchains-libgloss.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1toolchains-libgloss.git
 [submodule "toolchains/riscv-tools/riscv-isa-sim"]
 	path = toolchains/riscv-tools/riscv-isa-sim
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/riscv-isa-sim.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1riscv-isa-sim.git
 [submodule "toolchains/riscv-tools/riscv-openocd"]
 	path = toolchains/riscv-tools/riscv-openocd
 	url = https://github.com/riscv/riscv-openocd.git
 [submodule "toolchains/riscv-tools/riscv-pk"]
 	path = toolchains/riscv-tools/riscv-pk
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/riscv-pk.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1riscv-pk.git
 [submodule "toolchains/riscv-tools/riscv-spike-devices"]
 	path = toolchains/riscv-tools/riscv-spike-devices
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/toolchains-riscv-tools-riscv-spike-devices.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1toolchains-riscv-tools-riscv-spike-devices.git
 [submodule "toolchains/riscv-tools/riscv-tests"]
 	path = toolchains/riscv-tools/riscv-tests
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/toolchains-riscv-tools-riscv-tests.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1toolchains-riscv-tools-riscv-tests.git
 [submodule "toolchains/riscv-tools/riscv-tools-feedstock"]
 	path = toolchains/riscv-tools/riscv-tools-feedstock
 	url = https://github.com/ucb-bar/riscv-tools-feedstock.git
 [submodule "tools/DRAMSim2"]
 	path = tools/DRAMSim2
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-DRAMSim2.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-DRAMSim2.git
 [submodule "tools/axe"]
 	path = tools/axe
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-axe.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-axe.git
 [submodule "tools/cde"]
 	path = tools/cde
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-cde.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-cde.git
 [submodule "tools/circt"]
 	path = tools/circt
 	url = https://github.com/llvm/circt.git
 [submodule "tools/install-circt"]
 	path = tools/install-circt
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-install-circt.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-install-circt.git
 [submodule "tools/rocket-dsp-utils"]
 	path = tools/rocket-dsp-utils
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-rocket-dsp-utils.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-rocket-dsp-utils.git
 [submodule "tools/torture"]
 	path = tools/torture
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/torture.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1torture.git
 [submodule "tools/dsptools"]
 	path = tools/dsptools
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-dsptools.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-dsptools.git
 [submodule "tools/fixedpoint"]
 	path = tools/fixedpoint
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-fixedpoint.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-fixedpoint.git
 [submodule "generators/rerocc"]
 	path = generators/rerocc
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rerocc.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1generators-rerocc.git
 [submodule "generators/compress-acc"]
 	path = generators/compress-acc
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/compress-acc.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1compress-acc.git
 [submodule "generators/saturn"]
 	path = generators/saturn
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/saturn.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1saturn.git
 [submodule "software/firesim-paper-workloads"]
 	path = software/firesim-paper-workloads
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/firesim-paper-workloads.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1firesim-paper-workloads.git
 [submodule "generators/ara"]
 	path = generators/ara
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/ara-wrapper.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1ara-wrapper.git
 [submodule "tools/firrtl2"]
 	path = tools/firrtl2
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tools-firrtl2.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tools-firrtl2.git
 [submodule "generators/vexiiriscv"]
 	path = generators/vexiiriscv
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/vexiiriscv.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1vexiiriscv.git
 [submodule "software/tacit_decoder"]
 	path = software/tacit_decoder
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tacit_decoder.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tacit_decoder.git
 [submodule "generators/tacit"]
 	path = generators/tacit
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/tacit.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1tacit.git
 [submodule "generators/radiance"]
 	path = generators/radiance
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/radiance.git
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/_1radiance.git
