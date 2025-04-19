@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+	<info organisation="org.jline"
+		module="jline-builtins"
+		revision="3.19.0"
+		status="release"
+		publication="20210119121721"
+	>
+		<license name="The BSD License" url="https://opensource.org/licenses/BSD-3-Clause" />
+		<description homepage="" />
+		<m:dependency.management__org.jline__jline-style__version>3.19.0</m:dependency.management__org.jline__jline-style__version>
+		<m:properties__groovy.version>3.0.7</m:properties__groovy.version>
+		<m:properties__junit.version>4.13.1</m:properties__junit.version>
+		<m:dependency.management__org.jline__jline-builtins__version>3.19.0</m:dependency.management__org.jline__jline-builtins__version>
+		<m:dependency.management__org.apache.sshd__sshd-scp__version>2.1.0</m:dependency.management__org.apache.sshd__sshd-scp__version>
+		<m:dependency.management__org.apache.felix__org.apache.felix.gogo.runtime__version>1.1.2</m:dependency.management__org.apache.felix__org.apache.felix.gogo.runtime__version>
+		<m:dependency.management__org.jline__jline-reader__version>3.19.0</m:dependency.management__org.jline__jline-reader__version>
+		<m:properties__findbugs.version>3.0.2</m:properties__findbugs.version>
+		<m:dependency.management__org.jline__jline-terminal-jansi__version>3.19.0</m:dependency.management__org.jline__jline-terminal-jansi__version>
+		<m:dependency.management__org.slf4j__slf4j-api__version>1.7.21</m:dependency.management__org.slf4j__slf4j-api__version>
+		<m:dependency.management__org.apache.felix__org.apache.felix.gogo.jline__version>1.1.4</m:dependency.management__org.apache.felix__org.apache.felix.gogo.jline__version>
+		<m:dependency.management__org.jline__jline-terminal__version>3.19.0</m:dependency.management__org.jline__jline-terminal__version>
+		<m:dependency.management__org.jline__jline__version>3.19.0</m:dependency.management__org.jline__jline__version>
+		<m:dependency.management__net.java.dev.jna__jna__version>5.3.1</m:dependency.management__net.java.dev.jna__jna__version>
+		<m:properties__slf4j.version>1.7.21</m:properties__slf4j.version>
+		<m:dependency.management__org.codehaus.groovy__groovy-json__version>3.0.7</m:dependency.management__org.codehaus.groovy__groovy-json__version>
+		<m:properties__native.image.skip>true</m:properties__native.image.skip>
+		<m:properties__easymock.version>3.3.1</m:properties__easymock.version>
+		<m:properties__sshd.version>2.1.0</m:properties__sshd.version>
+		<m:dependency.management__org.apache.sshd__sshd-core__version>2.1.0</m:dependency.management__org.apache.sshd__sshd-core__version>
+		<m:dependency.management__org.jline__jline-terminal-jna__version>3.19.0</m:dependency.management__org.jline__jline-terminal-jna__version>
+		<m:dependency.management__junit__junit__version>4.13.1</m:dependency.management__junit__junit__version>
+		<m:properties__graal.version>19.3.1</m:properties__graal.version>
+		<m:dependency.management__org.codehaus.groovy__groovy__version>3.0.7</m:dependency.management__org.codehaus.groovy__groovy__version>
+		<m:dependency.management__org.apache.sshd__sshd-sftp__version>2.1.0</m:dependency.management__org.apache.sshd__sshd-sftp__version>
+		<m:dependency.management__org.fusesource.jansi__jansi__version>2.1.0</m:dependency.management__org.fusesource.jansi__jansi__version>
+		<m:dependency.management__org.jline__jline-groovy__version>3.19.0</m:dependency.management__org.jline__jline-groovy__version>
+		<m:dependency.management__org.jline__jline-console__version>3.19.0</m:dependency.management__org.jline__jline-console__version>
+		<m:dependency.management__org.jline__jline-remote-telnet__version>3.19.0</m:dependency.management__org.jline__jline-remote-telnet__version>
+		<m:properties__automatic.module.name>org.jline.builtins</m:properties__automatic.module.name>
+		<m:dependency.management__org.easymock__easymock__version>3.3.1</m:dependency.management__org.easymock__easymock__version>
+		<m:properties__jna.version>5.3.1</m:properties__jna.version>
+		<m:properties__maven.compiler.target>1.8</m:properties__maven.compiler.target>
+		<m:properties__sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</m:properties__sonatypeOssDistMgmtSnapshotsUrl>
+		<m:maven.plugins>org.apache.maven.plugins__maven-enforcer-plugin__1.2|org.apache.maven.plugins__maven-enforcer-plugin__1.2|org.apache.felix__maven-bundle-plugin__3.5.0|org.apache.maven.plugins__maven-compiler-plugin__3.8.1|org.codehaus.gmavenplus__gmavenplus-plugin__1.8.1|org.apache.maven.plugins__maven-resources-plugin__3.2.0|org.apache.maven.plugins__maven-jar-plugin__3.2.0|org.apache.maven.plugins__maven-surefire-plugin__3.0.0-M5|org.apache.maven.plugins__maven-source-plugin__3.2.1|org.apache.maven.plugins__maven-release-plugin__3.0.0-M1|org.graalvm.nativeimage__native-image-maven-plugin__19.3.1|org.apache.maven.plugins__maven-enforcer-plugin__1.2|org.apache.maven.plugins__maven-enforcer-plugin__1.2|org.apache.felix__maven-bundle-plugin__3.5.0|org.apache.maven.plugins__maven-compiler-plugin__3.8.1|org.codehaus.gmavenplus__gmavenplus-plugin__1.8.1|org.apache.maven.plugins__maven-resources-plugin__3.2.0|org.apache.maven.plugins__maven-jar-plugin__3.2.0|org.apache.maven.plugins__maven-surefire-plugin__3.0.0-M5|org.apache.maven.plugins__maven-source-plugin__3.2.1|org.apache.maven.plugins__maven-release-plugin__3.0.0-M1|org.graalvm.nativeimage__native-image-maven-plugin__19.3.1|org.apache.maven.plugins__maven-compiler-plugin__null</m:maven.plugins>
+		<m:dependency.management__org.jline__jline-remote-ssh__version>3.19.0</m:dependency.management__org.jline__jline-remote-ssh__version>
+		<m:properties__gogo.jline.version>1.1.4</m:properties__gogo.jline.version>
+		<m:properties__ivy.version>2.5.0</m:properties__ivy.version>
+		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
+		<m:properties__gogo.runtime.version>1.1.2</m:properties__gogo.runtime.version>
+		<m:dependency.management__org.apache.ivy__ivy__version>2.5.0</m:dependency.management__org.apache.ivy__ivy__version>
+		<m:dependency.management__org.graalvm.sdk__graal-sdk__version>19.3.1</m:dependency.management__org.graalvm.sdk__graal-sdk__version>
+		<m:dependency.management__org.codehaus.groovy__groovy-console__version>3.0.7</m:dependency.management__org.codehaus.groovy__groovy-console__version>
+		<m:dependency.management__org.slf4j__slf4j-jdk14__version>1.7.21</m:dependency.management__org.slf4j__slf4j-jdk14__version>
+		<m:properties__jansi.version>2.1.0</m:properties__jansi.version>
+		<m:dependency.management__com.googlecode.juniversalchardet__juniversalchardet__version>1.0.3</m:dependency.management__com.googlecode.juniversalchardet__juniversalchardet__version>
+		<m:properties__juniversalchardet.version>1.0.3</m:properties__juniversalchardet.version>
+		<m:dependency.management__org.apache.sshd__sshd-common__version>2.1.0</m:dependency.management__org.apache.sshd__sshd-common__version>
+		<m:dependency.management__com.google.code.findbugs__jsr305__version>3.0.2</m:dependency.management__com.google.code.findbugs__jsr305__version>
+		<m:properties__maven.compiler.source>1.8</m:properties__maven.compiler.source>
+	</info>
+	<configurations>
+		<conf name="default" visibility="public" description="runtime dependencies and master artifact can be used with this conf" extends="runtime,master"/>
+		<conf name="master" visibility="public" description="contains only the artifact published by this module itself, with no transitive dependencies"/>
+		<conf name="compile" visibility="public" description="this is the default scope, used if none is specified. Compile dependencies are available in all classpaths."/>
+		<conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
+		<conf name="runtime" visibility="public" description="this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath." extends="compile"/>
+		<conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases." extends="runtime"/>
+		<conf name="system" visibility="public" description="this scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository."/>
+		<conf name="sources" visibility="public" description="this configuration contains the source artifact of this module, if any."/>
+		<conf name="javadoc" visibility="public" description="this configuration contains the javadoc artifact of this module, if any."/>
+		<conf name="optional" visibility="public" description="contains all optional dependencies"/>
+	</configurations>
+	<publications>
+		<artifact name="jline-builtins" type="jar" ext="jar" conf="master"/>
+	</publications>
+	<dependencies>
+		<dependency org="org.jline" name="jline-reader" rev="3.19.0" force="true" conf="compile->compile(*),master(*);runtime->runtime(*)"/>
+		<dependency org="org.jline" name="jline-style" rev="3.19.0" force="true" conf="compile->compile(*),master(*);runtime->runtime(*)"/>
+		<dependency org="com.googlecode.juniversalchardet" name="juniversalchardet" rev="1.0.3" force="true" conf="optional->compile(*),master(*)"/>
+		<dependency org="junit" name="junit" rev="4.13.1" force="true" conf="test->runtime(*),master(*)"/>
+		<override org="org.apache.sshd" module="sshd-core" matcher="exact" rev="2.1.0"/>
+		<override org="org.jline" module="jline-reader" matcher="exact" rev="3.19.0"/>
+		<override org="org.slf4j" module="slf4j-jdk14" matcher="exact" rev="1.7.21"/>
+		<override org="org.jline" module="jline-terminal-jansi" matcher="exact" rev="3.19.0"/>
+		<override org="net.java.dev.jna" module="jna" matcher="exact" rev="5.3.1"/>
+		<override org="org.apache.felix" module="org.apache.felix.gogo.runtime" matcher="exact" rev="1.1.2"/>
+		<override org="junit" module="junit" matcher="exact" rev="4.13.1"/>
+		<override org="org.apache.sshd" module="sshd-common" matcher="exact" rev="2.1.0"/>
+		<override org="org.jline" module="jline-terminal-jna" matcher="exact" rev="3.19.0"/>
+		<override org="org.codehaus.groovy" module="groovy-json" matcher="exact" rev="3.0.7"/>
+		<override org="org.jline" module="jline-groovy" matcher="exact" rev="3.19.0"/>
+		<override org="org.jline" module="jline-builtins" matcher="exact" rev="3.19.0"/>
+		<override org="org.easymock" module="easymock" matcher="exact" rev="3.3.1"/>
+		<override org="org.jline" module="jline-remote-telnet" matcher="exact" rev="3.19.0"/>
+		<override org="org.apache.sshd" module="sshd-sftp" matcher="exact" rev="2.1.0"/>
+		<override org="org.codehaus.groovy" module="groovy-console" matcher="exact" rev="3.0.7"/>
+		<override org="org.slf4j" module="slf4j-api" matcher="exact" rev="1.7.21"/>
+		<override org="org.jline" module="jline-console" matcher="exact" rev="3.19.0"/>
+		<override org="org.graalvm.sdk" module="graal-sdk" matcher="exact" rev="19.3.1"/>
+		<override org="org.apache.felix" module="org.apache.felix.gogo.jline" matcher="exact" rev="1.1.4"/>
+		<override org="org.codehaus.groovy" module="groovy" matcher="exact" rev="3.0.7"/>
+		<override org="org.apache.sshd" module="sshd-scp" matcher="exact" rev="2.1.0"/>
+		<override org="org.jline" module="jline-remote-ssh" matcher="exact" rev="3.19.0"/>
+		<override org="org.apache.ivy" module="ivy" matcher="exact" rev="2.5.0"/>
+		<override org="com.google.code.findbugs" module="jsr305" matcher="exact" rev="3.0.2"/>
+		<override org="com.googlecode.juniversalchardet" module="juniversalchardet" matcher="exact" rev="1.0.3"/>
+		<override org="org.jline" module="jline" matcher="exact" rev="3.19.0"/>
+		<override org="org.jline" module="jline-style" matcher="exact" rev="3.19.0"/>
+		<override org="org.fusesource.jansi" module="jansi" matcher="exact" rev="2.1.0"/>
+		<override org="org.jline" module="jline-terminal" matcher="exact" rev="3.19.0"/>
+	</dependencies>
+</ivy-module>
