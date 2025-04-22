@@ -323,13 +323,10 @@ if run_step "10"; then
     else
 	echo "Downloading CIRCT from nightly build"
 
+    git clone ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/circt-tar.git
+
 	git submodule update --init $CYDIR/tools/install-circt &&
-	    $CYDIR/tools/install-circt/bin/download-release-or-nightly-circt.sh \
-		-f circt-full-static-linux-x64.tar.gz \
-		-i $PREFIX \
-		-v version-file \
-		-x $CYDIR/conda-reqs/circt.json \
-		-g $GITHUB_TOKEN
+	    cat $PREFIX/../../circt-tar/circt-full-static-linux-x64.tar.gz | tar -zx -C $OPT_INSTALL_DIR/ --strip-components 1
     fi
     exit_if_last_command_failed
 fi
