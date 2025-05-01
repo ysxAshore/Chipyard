@@ -160,3 +160,6 @@
 [submodule "generators/radiance"]
 	path = generators/radiance
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/radiance_1.git
+[submodule "generators/cute"]
+	path = generators/cute
+	url = ssh://git@10.208.130.232:2247/cute-dev1/cute.git
