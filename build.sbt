@@ -157,7 +157,7 @@ lazy val chipyard = (project in file("generators/chipyard"))
   .dependsOn(testchipip, rocketchip, boom, rocketchip_blocks, rocketchip_inclusive_cache,
     dsptools, rocket_dsp_utils,
     radiance, gemmini, icenet, tracegen, cva6, nvdla, sodor, ibex, fft_generator,
-    constellation, mempress, barf, shuttle, caliptra_aes, rerocc,
+    constellation, mempress, barf, shuttle, caliptra_aes, rerocc, cute,
     compressacc, saturn, ara, firrtl2_bridge, vexiiriscv, tacit)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(
@@ -225,6 +225,11 @@ lazy val cva6 = (project in file("generators/cva6"))
 
 lazy val ara = (project in file("generators/ara"))
   .dependsOn(rocketchip, shuttle)
+  .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(commonSettings)
+
+lazy val cute = (project in file("generators/cute"))
+  .dependsOn(boom,saturn,shuttle)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
 

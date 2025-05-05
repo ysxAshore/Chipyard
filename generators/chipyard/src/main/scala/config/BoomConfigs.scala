@@ -7,6 +7,10 @@ import org.chipsalliance.cde.config.{Config}
 // Performant, stable baseline
 // ---------------------
 
+class YJPSmallBoomConfig extends Config(
+  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
+  new chipyard.config.AbstractConfig)
+
 class SmallBoomV3Config extends Config(
   new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
   new chipyard.config.AbstractConfig)
