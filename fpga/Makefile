@@ -44,6 +44,20 @@ ifeq ($(SUB_PROJECT),vcu118)
 	FPGA_BRAND        ?= xilinx
 endif
 
+ifeq ($(SUB_PROJECT),yjp_vivado_ip)
+	SBT_PROJECT       ?= chipyard_fpga
+	MODEL             ?= YJPVivadoIPHarness
+	VLOG_MODEL        ?= YJPVivadoIPHarness
+	MODEL_PACKAGE     ?= chipyard.fpga.yjpvivadoip
+	CONFIG            ?= CUTEBoomVCU118Config
+	CONFIG_PACKAGE    ?= chipyard.fpga.yjpvivadoip
+	GENERATOR_PACKAGE ?= chipyard
+	TB                ?= none # unused
+	TOP               ?= ChipTop
+	BOARD             ?= vcu118
+	FPGA_BRAND        ?= xilinx
+endif
+
 ifeq ($(SUB_PROJECT),nexysvideo)
 	SBT_PROJECT       ?= chipyard_fpga
 	MODEL             ?= NexysVideoHarness

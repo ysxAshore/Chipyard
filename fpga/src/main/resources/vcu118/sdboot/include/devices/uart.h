@@ -1,28 +1,49 @@
-// See LICENSE.Sifive for license details.
+// See LICENSE for license details.
 
-#ifndef _SIFIVE_UART_H
-#define _SIFIVE_UART_H
+#ifndef UART_HEADER_H
+#define UART_HEADER_H
 
-/* Register offsets */
-#define UART_REG_TXFIFO         0x00
-#define UART_REG_RXFIFO         0x04
-#define UART_REG_TXCTRL         0x08
-#define UART_REG_RXCTRL         0x0c
-#define UART_REG_IE             0x10
-#define UART_REG_IP             0x14
-#define UART_REG_DIV            0x18
+#define UART_BASE ((unsigned long)(0x61200000 | 0x1000))
 
-/* TXCTRL register */
-#define UART_TXEN               0x1
-#define UART_TXNSTOP            0x2
-#define UART_TXWM(x)            (((x) & 0xffff) << 16)
+// RBR: Receiver buffer register [Read, LCR[7] == 0]
+#define UART_RBR 0x0u
 
-/* RXCTRL register */
-#define UART_RXEN               0x1
-#define UART_RXWM(x)            (((x) & 0xffff) << 16)
+// THR: Transmitter Holding register [Write, LCR[7] == 0]
+#define UART_THR 0x0u
 
-/* IP register */
-#define UART_IP_TXWM            0x1
-#define UART_IP_RXWM            0x2
+// IER: Interrupt enable register [Read/Write, LCR[7] == 0]
+#define UART_IER 0x1u
 
-#endif /* _SIFIVE_UART_H */
+// IIR: Interrupt identification register [Read]
+#define UART_IIR 0x2u
+
+// FCR: FIFO control register [Write, Read only when LCR[7] == 1]
+#define UART_FCR 0x2u
+
+// LCR: Line control register [Read/Write]
+#define UART_LCR 0x3u
+
+// MCR: Modem control register [Read/Write]
+#define UART_MCR 0x4u
+
+// LSR: Line status register [Read/Write]
+#define UART_LSR 0x5u
+
+// MSR: Modem status register [Read/Write]
+#define UART_MSR 0x6u
+
+// SCR: Scratch register [Read/Write]
+#define UART_SCR 0x7u
+
+// DLL: Divisor latch (least significant byte) register [Read/Write, LCR[7] == 1]
+#define UART_DLL 0x0u
+
+// DLM: Divisor latch (most significant byte) register [Read/Write, LCR[7] == 1]
+#define UART_DLM 0x1u
+
+// UART APIs
+// extern void uart_init();
+// extern void uart_send(uint8_t);
+// extern char uart_receive();
+
+#endif

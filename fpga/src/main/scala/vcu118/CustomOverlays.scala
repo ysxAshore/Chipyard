@@ -10,7 +10,7 @@ import sifive.fpgashells.shell._
 import sifive.fpgashells.ip.xilinx._
 import sifive.fpgashells.shell.xilinx._
 import sifive.fpgashells.clocks._
-import sifive.fpgashells.devices.xilinx.xilinxvcu118mig.{XilinxVCU118MIGPads, XilinxVCU118MIGParams, XilinxVCU118MIG}
+import sifive.fpgashells.devices.xilinx.xilinxvcu118mig._
 
 class SysClock2VCU118PlacedOverlay(val shell: VCU118ShellBasicOverlays, name: String, val designInput: ClockInputDesignInput, val shellInput: ClockInputShellInput)
   extends LVDSClockInputXilinxPlacedOverlay(name, designInput, shellInput)

@@ -18,6 +18,9 @@ import sifive.blocks.devices.spi.{PeripherySPIKey, SPIPortIO}
 
 import chipyard._
 import chipyard.harness._
+import freechips.rocketchip.subsystem.CanHaveMasterAXI4MMIOPort
+import freechips.rocketchip.amba.axi4.AXI4MasterNode
+// import sifive.fpgashells.devices.xilinx.xilinxvcu118mig.{XilinxVCU118BlockDesign}
 
 class VCU118FPGATestHarness(override implicit val p: Parameters) extends VCU118ShellBasicOverlays {
 
@@ -63,7 +66,7 @@ class VCU118FPGATestHarness(override implicit val p: Parameters) extends VCU118S
   // 1st UART goes to the VCU118 dedicated UART
 
   val io_uart_bb = BundleBridgeSource(() => (new UARTPortIO(dp(PeripheryUARTKey).head)))
-  dp(UARTOverlayKey).head.place(UARTDesignInput(io_uart_bb))
+  dp(UARTOverlayKey).head.place(UARTDesignInput(io_uart_bb)) //在这里new了一个对象
 // DOC include end: UartOverlay
 
   /*** SPI ***/
@@ -126,5 +129,6 @@ class VCU118FPGATestHarnessImp(_outer: VCU118FPGATestHarness) extends LazyRawMod
   childClock := referenceClock
   childReset := referenceReset
 
+  println("Harness clock/reset initialized.")
   instantiateChipTops()
 }

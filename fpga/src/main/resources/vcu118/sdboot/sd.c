@@ -69,7 +69,7 @@ static uint8_t sd_cmd(uint8_t cmd, uint32_t arg, uint8_t crc)
 	do {
 		r = sd_dummy();
 		if (!(r & 0x80)) {
-//			dprintf("sd:cmd: %hx\r\n", r);
+			dprintf("sd:cmd: %hx\r\n", r);
 			goto done;
 		}
 	} while (--n > 0);
@@ -225,12 +225,21 @@ static int copy(void)
 	return rc;
 }
 
+void truejump2ddrinfo(void)
+{
+    kputs("[YJP]TrueJump2DDR");
+}
+
 int main(void)
 {
-	REG32(uart, UART_REG_TXCTRL) = UART_TXEN;
+    //uart初始化
+    uart_init();
+    
 
 	kputs("INIT");
+    kputs("Hello,YJP!");
 	sd_poweron();
+    int ret = 0;
 	if (sd_cmd0() ||
 	    sd_cmd8() ||
 	    sd_acmd41() ||
@@ -238,8 +247,29 @@ int main(void)
 	    sd_cmd16() ||
 	    copy()) {
 		kputs("ERROR");
-		return 1;
+		ret = 1;
 	}
+    if (ret == 1)
+    {
+        kputs("QvQ, Pmod SD Card Boot Failed!");
+        kputs("Wait YJP JTAG DDR Booting?(Y/N)");
+        char c = 0;
+        while (1)
+        {
+            kgetc(&c);
+            if (c == 'Y' || c == 'y')
+            {
+                kputs("OK, YJP JTAG DDR Booting!");
+                break;
+            }
+            else if (c == 'N' || c == 'n')
+            {
+                kputs("OK, Exit!");
+                return 0;
+            }
+        }
+    }
+    
 
 	kputs("BOOT");
 

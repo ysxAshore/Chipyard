@@ -11,6 +11,7 @@ _prog_start:
   li sp, (PAYLOAD_DEST + 0xffff000)
   call main
   smp_resume(s1, s2)
+  call truejump2ddrinfo
   csrr a0, mhartid // hartid for next level bootloader
   la a1, dtb // dtb address for next level bootloader
   li s1, PAYLOAD_DEST

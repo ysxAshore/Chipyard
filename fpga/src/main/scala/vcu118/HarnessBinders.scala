@@ -39,6 +39,7 @@ class WithDDRMem extends HarnessBinder({
 
 class WithJTAG extends HarnessBinder({
   case (th: VCU118FPGATestHarnessImp, port: JTAGPort, chipId: Int) => {
+    println("JTAG port connected")
     val jtag_io = th.vcu118Outer.jtagPlacedOverlay.overlayOutput.jtag.getWrappedValue
     port.io.TCK := jtag_io.TCK
     port.io.TMS := jtag_io.TMS
