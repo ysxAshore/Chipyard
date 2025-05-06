@@ -238,35 +238,21 @@ int main(void)
 
 	kputs("INIT");
     kputs("Hello,YJP!");
-	sd_poweron();
-    int ret = 0;
-	if (sd_cmd0() ||
-	    sd_cmd8() ||
-	    sd_acmd41() ||
-	    sd_cmd58() ||
-	    sd_cmd16() ||
-	    copy()) {
-		kputs("ERROR");
-		ret = 1;
-	}
-    if (ret == 1)
+    kputs("QvQ, Pmod SD Card Boot Failed!");
+    kputs("Wait YJP JTAG DDR Booting?(Y/N)");
+    char c = 0;
+    while (1)
     {
-        kputs("QvQ, Pmod SD Card Boot Failed!");
-        kputs("Wait YJP JTAG DDR Booting?(Y/N)");
-        char c = 0;
-        while (1)
+        kgetc(&c);
+        if (c == 'Y' || c == 'y')
         {
-            kgetc(&c);
-            if (c == 'Y' || c == 'y')
-            {
-                kputs("OK, YJP JTAG DDR Booting!");
-                break;
-            }
-            else if (c == 'N' || c == 'n')
-            {
-                kputs("OK, Exit!");
-                return 0;
-            }
+            kputs("OK, YJP JTAG DDR Booting!");
+            break;
+        }
+        else if (c == 'N' || c == 'n')
+        {
+            kputs("OK, Exit!");
+            return 0;
         }
     }
     
