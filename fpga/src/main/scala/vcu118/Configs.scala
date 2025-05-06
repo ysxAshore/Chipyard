@@ -82,16 +82,6 @@ class RocketVCU118Config extends Config(
 )
 // DOC include end: AbstractVCU118 and Rocket
 
-class CUTEBoomVCU118Config extends Config(
-  new WithFPGAFrequency(25) ++
-  new chipyard.config.WithUniformBusFrequencies(25) ++
-  new chipyard.iobinders.WithAXI4MMIOPunchthrough ++
-  new WithYJPMMIOPort ++ 
-  new freechips.rocketchip.subsystem.WithDefaultSlavePort ++
-  new freechips.rocketchip.subsystem.WithNExtTopInterrupts(4) ++
-  new WithVCU118Tweaks ++
-  new chipyard.FPGACUTESmallBoomConfig
-)
 
 class BoomVCU118Config extends Config(
   new WithFPGAFrequency(50) ++

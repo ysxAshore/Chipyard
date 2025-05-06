@@ -201,6 +201,17 @@ debug-bitstream: $(build_dir)/obj/post_synth.dcp
 			$(build_dir)/debug_obj \
 			$(fpga_common_script_dir)
 
+# SCPCMD='echo "have not done scp yet"'
+.PHONY: yjpvivadoip
+yjpvivadoip: verilog
+	@echo $(build_dir)
+	@echo $(base_dir)
+	python $(base_dir)/fpga/testvivadoip.py $(build_dir)/gen-collateral/ChipTop.sv $(build_dir)/gen-collateral/ChipTop.sv
+	@echo 
+	@echo 'Hello!Next step is to scp the gen_dir to the vivado ip project'
+	@echo '      Next step is to scp the gen_dir to the vivado ip project'
+	@echo 'There!Next step is to scp the gen_dir to the vivado ip project'
+	@echo 
 #########################################################################################
 # general cleanup rules
 #########################################################################################
