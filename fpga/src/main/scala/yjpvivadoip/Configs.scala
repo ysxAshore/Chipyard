@@ -29,9 +29,9 @@ class WithSystemModifications extends Config((site, here, up) => {
   case BootROMLocated(x) => up(BootROMLocated(x), site).map { p =>
     // invoke makefile for sdboot
     val freqMHz = (site(SystemBusKey).dtsFrequency.get / (1000 * 1000)).toLong
-    val make = s"make -C fpga/src/main/resources/vcu118/sdboot PBUS_CLK=${freqMHz} bin"
+    val make = s"make -C fpga/src/main/resources/vcu118/flashboot PBUS_CLK=${freqMHz} bin"
     require (make.! == 0, "Failed to build bootrom")
-    p.copy(hang = 0x10000, contentFileName = SystemFileName(s"./fpga/src/main/resources/vcu118/sdboot/build/sdboot.bin"))
+    p.copy(hang = 0x10000, contentFileName = SystemFileName(s"./fpga/src/main/resources/vcu118/flashboot/build/flashboot.bin"))
   }
   case ExtMem => up(ExtMem, site).map(x => x.copy(master = x.master.copy(size = site(VCU118DDRSize),beatBytes = 16))) // set extmem to DDR size
   case SerialTLKey => Nil // remove serialized tl port
@@ -60,8 +60,8 @@ class CUTEBoomVCU118Config extends Config(
   new WithVivadoIPL2FBusAXI4Punchthrough ++ //L2_S_x --> 前端总线，dma总线
   new WithVivadoIPAXI4MMIOPunchthrough ++   //MMIO_M_x --> MMIO设备，各种blockDesign涉及的IP核通过这条总线连接
   new WithVivadoIPAXI4MemPunchthrough ++    //MEM_M_x --> DDR4内存
-  new freechips.rocketchip.subsystem.WithCustomSlavePort(data_width = 128, id_bits = 8) ++ //设置访存总线的位宽
-  new freechips.rocketchip.subsystem.WithDefaultSlavePort ++
+  new freechips.rocketchip.subsystem.WithCustomSlavePort(data_width = 64, id_bits = 8) ++ //设置访存总线的位宽
+//   new freechips.rocketchip.subsystem.WithDefaultSlavePort ++
   new freechips.rocketchip.subsystem.WithNExtTopInterrupts(4) ++
   new WithVCU118Tweaks ++ //基础的配置
   new chipyard.YJPFPGACUTESmallBoomConfig
