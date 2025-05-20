@@ -9,6 +9,8 @@ const char* get_march(size_t marchid) {
     return "sonicboom";
   case 5:
     return "spike";
+  case 34:
+    return "shuttle";
   default:
     return "unknown";
   }

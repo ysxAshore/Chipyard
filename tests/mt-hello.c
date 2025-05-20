@@ -3,7 +3,7 @@
 #include "marchid.h"
 
 // EDIT THIS
-static size_t n_cores = 4;
+static size_t n_cores = 8;
 
 static void __attribute__((noinline)) barrier()
 {
@@ -33,7 +33,7 @@ void __main(void) {
   const char* march = get_march(read_csr(marchid));
   for (size_t i = 0; i < n_cores; i++) {
     if (mhartid == i) {
-      printf("Hello world from core %lu, a %s\n", mhartid, march);
+      printf("Hello world from core[%d] %lu, a %s\n",read_csr(marchid), mhartid, march);
     }
     barrier();
   }
