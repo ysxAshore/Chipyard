@@ -36,6 +36,7 @@ void task_pool_add_task(task_pool *pool, void (*task_function)(int, void*), void
         pool->tasks[pool->size].task_function = task_function;
         pool->tasks[pool->size].thread_params = thread_params;
         pool->size++;
+        pool->ticket.max = pool->size;
     }
     // queue_lock_release(&pool->insert_task_lock);
 }

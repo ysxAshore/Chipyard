@@ -33,7 +33,7 @@ void loop_ticket_init(loop_ticket_t *lock) {
 
 int loop_ticket_acquire(loop_ticket_t *lock) {
     int my_ticket = __sync_fetch_and_add(&lock->next_ticket, 1);
-    return my_ticket<lock->max? my_ticket : -1;
+    return (my_ticket<lock->max)? my_ticket : -1;
 }
 
 
