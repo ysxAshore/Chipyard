@@ -159,6 +159,13 @@ class REFV512D512ShuttleConfig extends Config(
   new shuttle.common.WithNShuttleCores(1) ++
   new chipyard.config.AbstractConfig)
 
+  class REFV512D512C4ShuttleConfig extends Config(
+  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  new shuttle.common.WithTCM ++
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+  new shuttle.common.WithNShuttleCores(4) ++
+  new chipyard.config.AbstractConfig)
 
 // Cosim configs
 

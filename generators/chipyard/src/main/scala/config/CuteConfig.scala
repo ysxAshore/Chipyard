@@ -1,22 +1,17 @@
 package chipyard
 
 import org.chipsalliance.cde.config.{Config}
-
+import saturn.common.{VectorParams}
 // ---------------------
 // BOOM V3 Configs
 // Performant, stable baseline
 // ---------------------
 
-class FPGACUTESmallBoomConfig extends Config(
-  new cute.WithCUTE(Seq(0)) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
-  new chipyard.config.AbstractConfig)
 
 class YJPFPGACUTESmallBoomConfig extends Config(
   new cute.WithCUTE(Seq(0)) ++
   new chipyard.config.WithSystemBusWidth(256) ++
-  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
+  new boom.v3.common.WithNSmallBoomsMMIOSpeedUp(1) ++                          // small boom config
   new chipyard.config.YJPAbstractConfig)
 
 class CUTESmallBoomConfig extends Config(
@@ -24,6 +19,30 @@ class CUTESmallBoomConfig extends Config(
   new chipyard.config.WithSystemBusWidth(256) ++
   new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
   new chipyard.config.AbstractConfig)
+
+class CUTEShuttle512D512V256M4CoreConfig extends Config(
+  new cute.WithCUTE(Seq(0,1,2,3)) ++
+  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  new shuttle.common.WithTCM ++
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+  new shuttle.common.WithNShuttleCores(4) ++
+  new chipyard.config.AbstractConfig)
+
+class CUTEShuttle512D512V256M2Shuttle1BoomConfig extends Config(
+  new cute.WithCUTE(Seq(1,2)) ++
+  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  new shuttle.common.WithTCM ++
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+//   new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
+//   new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
+  new shuttle.common.WithNShuttleCores(2) ++
+//   new boom.v3.common.WithBoomCommitLogPrintf ++ // enable commit log printf
+  // new freechips.rocketchip.subsystem.WithoutTLMonitors ++
+  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
+  new chipyard.config.AbstractConfig)
+
 
 // class SmallBoomV3Config extends Config(
 //   new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
