@@ -1,6 +1,9 @@
 #include <riscv-pk/encoding.h>
 #include <stdio.h>
 #include "marchid.h"
+#include "mt-thread.h"
+#include "mt-queuelock.h"
+#include "resetnet50_static_graph.h"
 
 // EDIT THIS
 static size_t n_cores = 3;
@@ -25,28 +28,10 @@ static void __attribute__((noinline)) barrier()
   __sync_synchronize();
 }
 
-//排队锁
-typedef struct {
-    volatile int next_ticket;
-    volatile int now_serving;
-} queue_lock_t;
-void queue_lock_init(queue_lock_t *lock) {
-    lock->next_ticket = 0;
-    lock->now_serving = 0;
-}
-void queue_lock_acquire(queue_lock_t *lock) {
-    int my_ticket = __sync_fetch_and_add(&lock->next_ticket, 1);
-    while (lock->now_serving != my_ticket) {
-        // Busy wait
-    }
-}
-void queue_lock_release(queue_lock_t *lock) {
-    __sync_fetch_and_add(&lock->now_serving, 1);
-}
-static queue_lock_t hello_lock;
-void init_locks() {
-    queue_lock_init(&hello_lock);
-}
+// static queue_lock_t hello_lock;
+// void init_locks() {
+//     queue_lock_init(&hello_lock);
+// }
 
 volatile int init_down = 0;
 volatile int exit_ok = 0;
@@ -54,6 +39,8 @@ volatile int exit_ok = 0;
 void init_calculate_thread(void){
 
 }
+
+task_pool *pool = NULL;
 
 void __main(void) {
   //this is __main thread,caculate core is here
@@ -71,29 +58,34 @@ void __main(void) {
 
   size_t mhartid = read_csr(mhartid);
   const char* march = get_march(read_csr(marchid));
-  queue_lock_acquire(&hello_lock);
-  for (size_t i = 0; i < n_cores; i++) {
-    if (mhartid == i) {
-      printf("Hello YJP, there is calculate thread.\n");
-      printf("Calculate thread is core[marchid=%d] mhartid=%lu, a %s\n",read_csr(marchid), mhartid, march);
-      queue_lock_release(&hello_lock);
-    }
-  }
-    
+  
+  queue_lock_acquire(&console_lock);
+  printf("Hello YJP, there is calculate thread.\n");
+  printf("Calculate thread is core[marchid=%d] mhartid=%lu, a %s\n",read_csr(marchid), mhartid, march);
+  queue_lock_release(&console_lock);
 
-  //wait core 0
+  
+  while(execute_task(pool))
+  {
+    ;
+  }
+
+
+
+  //let core 0 know that we are finished
   __sync_fetch_and_add(&exit_ok, 1);
 
   while(1)
   {
     //waiting for interrupt
-
     asm volatile (
       "wfi"
     );
   }
 
 }
+
+
 
 int main(void) {
   //this is main thread
@@ -102,12 +94,42 @@ int main(void) {
   printf("Hello YJP, there is main thread.\n");
   printf("Main thred is core[marchid=%d] mhartid=%lu, a %s.\n",read_csr(marchid), mhartid, march);
 
+  //TODO：linux会读取某个文件来获取模型图信息
+
   //fence
-  init_locks();
   __sync_synchronize();
+  //初始化任务池
+  pool = task_pool_init(128);
+  resnet50_graph *graph = init_resnet50_graph();
+  graph_node *current_node = graph->head;
+
+
+  //解析模型文件，往任务池里添加任务
+  void (*task_function)(int thread_id, void *thread_params);
+  //for task in nn_graph;
+  while((task_function = get_current_task(graph, current_node)) != NULL)
+  {
+    
+    task_function = get_current_task(graph, current_node);
+
+    if (task_function != NULL) {
+        task_pool_add_task(pool, task_function, (void *)(&current_node->conv_param));
+    }
+    
+    current_node = get_next_node(graph, current_node);
+    if (current_node == NULL) {
+      break;
+    }
+  }
+
+    //task_pool_add_task(task_pool, task);
+    //异步启动：软中断使计算线程执行任务
+    //同步：确认当前可并行图节点任务已完成
+  //end for
+
   init_down = 1;
   __sync_synchronize();
-
+  //模型解析完毕,仿真结束
 
   //wait exit ok
     while (exit_ok != n_cores-1) {
