@@ -9,7 +9,8 @@ import constellation.router._
 import constellation.topology._
 import constellation.noc._
 import constellation.soc.{GlobalNoCParams}
-
+import org.chipsalliance.cde.config.{Config}
+import saturn.common.{VectorParams}
 import scala.collection.immutable.ListMap
 
 /*
@@ -103,6 +104,112 @@ class MultiNoCConfig extends Config(
   )) ++
   new freechips.rocketchip.rocket.WithNHugeCores(8) ++
   new freechips.rocketchip.subsystem.WithNBanks(4) ++
+  new freechips.rocketchip.subsystem.WithNMemoryChannels(4) ++
+  new chipyard.config.AbstractConfig
+)
+
+class MultiNoCConfig2 extends Config(
+  new constellation.soc.WithCbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "serial_tl" -> 0),
+      outNodeMapping = ListMap(
+        "error" -> 1, "ctrls[0]" -> 2, "pbus" -> 3, "plic" -> 4,
+        "clint" -> 5, "dmInner" -> 6, "bootrom" -> 7, "clock" -> 8)),
+    NoCParams(
+      topology = TerminalRouter(BidirectionalLine(9)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(5) { UserVirtualChannelParams(4) }),
+      routingRelation = NonblockingVirtualSubnetworksRouting(TerminalRouterRouting(BidirectionalLineRouting()), 5, 1))
+  )) ++
+  new constellation.soc.WithMbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "L2 InclusiveCache[0]" -> 1, "L2 InclusiveCache[1]" -> 2,
+        "L2 InclusiveCache[2]" -> 5, "L2 InclusiveCache[3]" -> 6),
+      outNodeMapping = ListMap(
+        "system[0]" -> 0, "system[1]" -> 3,  "system[2]" -> 4 , "system[3]" -> 7,
+        "ram[0]" -> 0)),
+    NoCParams(
+      topology        = TerminalRouter(BidirectionalTorus1D(8)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(10) { UserVirtualChannelParams(4) }),
+      routingRelation = BlockingVirtualSubnetworksRouting(TerminalRouterRouting(BidirectionalTorus1DShortestRouting()), 5, 2))
+  )) ++
+  new constellation.soc.WithSbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "Core 0" -> 1, "Core 1" -> 2,  "Core 2" -> 4 , "Core 3" -> 7,
+        "Core 4" -> 8, "Core 5" -> 11, "Core 6" -> 13, "Core 7" -> 14,
+        "serial_tl" -> 0),
+      outNodeMapping = ListMap(
+        "system[0]" -> 5, "system[1]" -> 6, "system[2]" -> 9, "system[3]" -> 10,
+        "Core 0" -> 1, "Core 1" -> 2, "Core 2" -> 4, "Core 3" -> 7,
+        "Core 4" -> 8, "Core 5" -> 11, "Core 6" -> 13, "Core 7" -> 14,
+        "pbus" -> 3)),
+    NoCParams(
+      topology        = TerminalRouter(Mesh2D(4, 4)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(8) { UserVirtualChannelParams(4) }),
+      routingRelation = BlockingVirtualSubnetworksRouting(TerminalRouterRouting(Mesh2DEscapeRouting()), 5, 1))
+  )) ++
+//   new freechips.rocketchip.rocket.WithNHugeCores(4) ++
+  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
+  new shuttle.common.WithTCM ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+//   new freechips.rocketchip.rocket.WithDebugROB ++
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+  new shuttle.common.WithNShuttleCores(8) ++
+  new freechips.rocketchip.subsystem.WithNBanks(4) ++
+  new freechips.rocketchip.subsystem.WithNMemoryChannels(4) ++
+  new chipyard.config.AbstractConfig
+)
+
+class AICPUConfig extends Config(
+  new constellation.soc.WithCbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "serial_tl" -> 0),
+      outNodeMapping = ListMap(
+        "error" -> 1, "ctrls[0]" -> 2, "pbus" -> 3, "plic" -> 4,
+        "clint" -> 5, "dmInner" -> 6, "bootrom" -> 7, "clock" -> 8)),
+    NoCParams(
+      topology = TerminalRouter(BidirectionalLine(9)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(5) { UserVirtualChannelParams(4) }),
+      routingRelation = NonblockingVirtualSubnetworksRouting(TerminalRouterRouting(BidirectionalLineRouting()), 5, 1))
+  )) ++
+  new constellation.soc.WithMbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "L2 InclusiveCache[0]" -> 1, "L2 InclusiveCache[1]" -> 2,
+        "L2 InclusiveCache[2]" -> 3, "L2 InclusiveCache[3]" -> 4,
+        "L2 InclusiveCache[4]" -> 7, "L2 InclusiveCache[5]" -> 8,
+        "L2 InclusiveCache[6]" -> 9, "L2 InclusiveCache[7]" -> 10,
+        ),
+      outNodeMapping = ListMap(
+        "system[0]" -> 0, "system[1]" -> 5,  "system[2]" -> 6 , "system[3]" -> 11,
+        "ram[0]" -> 0)),
+    NoCParams(
+      topology        = TerminalRouter(BidirectionalTorus1D(12)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(10) { UserVirtualChannelParams(4) }),
+      routingRelation = BlockingVirtualSubnetworksRouting(TerminalRouterRouting(BidirectionalTorus1DShortestRouting()), 5, 2))
+  )) ++
+  new constellation.soc.WithSbusNoC(constellation.protocol.SimpleTLNoCParams(
+    constellation.protocol.DiplomaticNetworkNodeMapping(
+      inNodeMapping = ListMap(
+        "Core 0" -> 0,  "Core 1" -> 1,  "Core 2" -> 2 , "Core 3" -> 3,
+        "Core 4" -> 4,  "Core 5" -> 5,  "Core 6" -> 7 , "Core 7" -> 12,
+        "Core 8" -> 14,  "Core 9" -> 19, "Core 10" -> 21 , "Core 11" -> 22,
+        "Core 12" -> 23, "Core 13" -> 24, "Core 14" -> 25, "Core 15" -> 26,
+        "serial_tl" -> 6),
+      outNodeMapping = ListMap(
+        "system[0]" -> 8,  "system[1]" -> 9, "system[2]" -> 10, "system[3]" -> 11,
+        "system[4]" -> 15, "system[5]" -> 16, "system[6]" -> 17, "system[7]" -> 18,
+        "pbus" -> 27)),
+    NoCParams(
+      topology        = TerminalRouter(Mesh2D(4, 7)),
+      channelParamGen = (a, b) => UserChannelParams(Seq.fill(8) { UserVirtualChannelParams(4) }),
+      routingRelation = BlockingVirtualSubnetworksRouting(TerminalRouterRouting(Mesh2DEscapeRouting()), 5, 1))
+  )) ++
+  new freechips.rocketchip.rocket.WithNSmallCores(16) ++
+  new freechips.rocketchip.subsystem.WithNBanks(8) ++
   new freechips.rocketchip.subsystem.WithNMemoryChannels(4) ++
   new chipyard.config.AbstractConfig
 )

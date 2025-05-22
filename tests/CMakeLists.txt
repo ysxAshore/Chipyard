@@ -83,6 +83,7 @@ add_executable(spiflashwrite spiflashwrite.c)
 add_executable(fft fft.c)
 add_executable(gcd gcd.c)
 add_executable(hello hello.c)
+add_executable(mt-cutehello mt-cutehello.c)
 add_executable(mt-hello mt-hello.c)
 add_executable(symmetric symmetric.c)
 
@@ -122,6 +123,7 @@ add_dump_target(fft)
 add_dump_target(gcd)
 add_dump_target(hello)
 add_dump_target(mt-hello)
+add_dump_target(mt-cutehello)
 add_dump_target(symmetric)
 
 
