@@ -36,11 +36,31 @@ static void __attribute__((noinline)) barrier()
 volatile int init_down = 0;
 volatile int exit_ok = 0;
 
-void init_calculate_thread(void){
+
+task_pool *pool = NULL;
+
+void calculate_server(void){
+
+    while(execute_task(pool))
+    {
+      ;
+    }
+  
+    while(1)
+    {
+      //waiting for interrupt
+      asm volatile (
+        "wfi"
+      );
+    }
 
 }
 
-task_pool *pool = NULL;
+void init_calculate_thread(void){
+
+    //配软中断的陷入地址，参考/root/chipyard-main/chipyard/toolchains/libgloss/misc/crt0.S就行
+}
+
 
 void __main(void) {
   //this is __main thread,caculate core is here
@@ -65,23 +85,13 @@ void __main(void) {
   queue_lock_release(&console_lock);
 
   
-  while(execute_task(pool))
-  {
-    ;
-  }
 
 
 
   //let core 0 know that we are finished
   __sync_fetch_and_add(&exit_ok, 1);
 
-  while(1)
-  {
-    //waiting for interrupt
-    asm volatile (
-      "wfi"
-    );
-  }
+
 
 }
 
@@ -115,16 +125,13 @@ int main(void) {
     if (task_function != NULL) {
         task_pool_add_task(pool, task_function, (void *)(&current_node->conv_param));
     }
-    
+    //异步启动：软中断使计算线程执行任务
+    //同步：确认当前可并行图节点任务已完成
     current_node = get_next_node(graph, current_node);
     if (current_node == NULL) {
       break;
     }
   }
-
-    //task_pool_add_task(task_pool, task);
-    //异步启动：软中断使计算线程执行任务
-    //同步：确认当前可并行图节点任务已完成
   //end for
 
   init_down = 1;

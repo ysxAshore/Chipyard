@@ -4,9 +4,6 @@
 [submodule "generators/bar-fetchers"]
 	path = generators/bar-fetchers
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-bar-fetchers_1.git
-[submodule "generators/boom"]
-	path = generators/boom
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-boom_1.git
 [submodule "generators/caliptra-aes-acc"]
 	path = generators/caliptra-aes-acc
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-caliptra-aes-acc_1.git
