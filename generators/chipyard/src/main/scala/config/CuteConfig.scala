@@ -25,6 +25,22 @@ class CUTESmallBoomConfig extends Config(
   new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
   new chipyard.config.AbstractConfig)
 
+class CUTETestConfig128bitdram512bitL2Widen3issueBoom extends Config(
+// new freechips.rocketchip.subsystem.WithNBanks(8) ++
+//   new freechips.rocketchip.subsystem.WithInclusiveCache(nWays=16, capacityKB=2048) ++
+//   new freechips.rocketchip.subsystem.WithNMemoryChannels(4) ++
+  new boom.bobcat.common.WithVector(3) ++
+  new cute.WithCUTE(Seq(0)) ++
+  // new freechips.rocketchip.subsystem.WithNBanks(2) ++
+  new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
+  new freechips.rocketchip.subsystem.WithNMemoryChannels(1) ++
+//   new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=4096) ++
+  new boom.bobcat.common.WithBoomCommitLogPrintf ++
+  new boom.bobcat.common.WithBoomMemtraceLogPrintf ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  new boom.bobcat.common.WithN3IssueWidenBooms(1) ++                    // 3 issue boom config
+  new chipyard.config.AbstractConfig)
+
 // class SmallBoomV3Config extends Config(
 //   new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
 //   new chipyard.config.AbstractConfig)

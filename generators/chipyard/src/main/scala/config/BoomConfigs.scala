@@ -1,6 +1,27 @@
 package chipyard
 
 import org.chipsalliance.cde.config.{Config}
+import freechips.rocketchip.devices.tilelink.{BootROMLocated}
+
+// class WithCustomBootROM extends Config((site, here, up) => {
+//     case BootROMLocated(x) => up(BootROMLocated(x), site)
+//         .map(_.copy(contentFileName = s"generators/boom/src/main/resources/bootrom/bootrom.rv64.img"))
+// })
+
+// ---------------------
+// BOOM Bobcat Configs
+// ---------------------
+
+class SmallBobcatConfig extends Config(
+  new boom.bobcat.common.WithVector(1) ++
+  // new WithCustomBootROM ++                                       // Use custom BootROM to enable COSIM
+  new boom.bobcat.common.WithNSmallBooms(1) ++                          // small boom config
+  new chipyard.config.AbstractConfig)
+
+class Bobcat128bitdram512bitL2Widen3issueBoom extends Config(
+  new boom.bobcat.common.WithVector(3) ++
+  new boom.bobcat.common.WithN3IssueWidenBooms(1) ++                    // 3 issue boom config
+  new chipyard.config.AbstractConfig)
 
 // ---------------------
 // BOOM V3 Configs
