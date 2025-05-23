@@ -52,9 +52,6 @@
 [submodule "generators/rocket-chip-inclusive-cache"]
 	path = generators/rocket-chip-inclusive-cache
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-rocket-chip-inclusive-cache_1.git
-[submodule "generators/shuttle"]
-	path = generators/shuttle
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-shuttle_1.git
 [submodule "generators/testchipip"]
 	path = generators/testchipip
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/generators-testchipip_1.git
@@ -133,9 +130,6 @@
 [submodule "generators/compress-acc"]
 	path = generators/compress-acc
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/compress-acc_1.git
-[submodule "generators/saturn"]
-	path = generators/saturn
-	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/saturn_1.git
 [submodule "software/firesim-paper-workloads"]
 	path = software/firesim-paper-workloads
 	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/firesim-paper-workloads_1.git
@@ -163,3 +157,9 @@
 [submodule "generators/boom"]
 	path = generators/boom
 	url = ssh://git@10.208.130.232:2247/cute-dev1/boom.git
+[submodule "generators/saturn"]
+	path = generators/saturn
+	url = ssh://git@10.208.130.232:2247/cute-dev1/saturn-vectors.git
+[submodule "generators/shuttle"]
+	path = generators/shuttle
+	url = ssh://git@10.208.130.232:2247/cute-dev1/shuttle.git
