@@ -30,6 +30,7 @@ task_pool *task_pool_init(int capacity) {
     return pool;
 }
 
+__attribute__((noinline))
 void task_pool_add_task(task_pool *pool, void (*task_function)(int, void*), void *thread_params) {
     // queue_lock_acquire(&pool->insert_task_lock);//目前默认一个核可以添加任务
     if (pool->size < pool->capacity) {
