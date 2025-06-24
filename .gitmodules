@@ -163,3 +163,6 @@
 [submodule "generators/shuttle"]
 	path = generators/shuttle
 	url = ssh://git@10.208.130.232:2247/cute-dev1/shuttle.git
+[submodule "generators/cute-v3"]
+	path = generators/cute-v3
+	url = ssh://git@10.208.130.232:2247/cute-dev1/cutev3.git
