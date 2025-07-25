@@ -40,10 +40,12 @@ static int flashcopy(void)
     
     if(flash_info_i->Magic != 0xDEADBEEF) {
         kputs("Flash Magic Error!");
+        kprintf("Magic: %x\n", flash_info_i->Magic);
         return -1;
     }
     if(flash_info_i->ImageSize > SPI_FLASH_SIZE) {
         kputs("Flash Image Size Error!");
+        kprintf("Image Size: %x\n", flash_info_i->ImageSize);
         return -1;
     }
 
@@ -120,6 +122,7 @@ int main(void)
         else if (c == '2')
         {
             kputs("Wait YJP JTAG DDR Booting!");
+            kputs("Do you want to continue? (Y/N)\n");
             while (1)
             {
                 kgetc(&c);

@@ -155,7 +155,7 @@ class WithYJPVivadoMMIODevicePort extends Config((site, here, up) => {
     val beatBytes = site(freechips.rocketchip.subsystem.MemoryBusKey).beatBytes
     Some(freechips.rocketchip.subsystem.MasterPortParams(
                       base = 0x60000000L,
-                      size = 0x04000000L,
+                      size = 0x20000000L,
                       beatBytes = site(freechips.rocketchip.subsystem.MemoryBusKey).beatBytes,
                       idBits = 4))
                     }

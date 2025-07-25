@@ -3,90 +3,26 @@ package chipyard
 import org.chipsalliance.cde.config.{Config}
 import saturn.common.{VectorParams}
 import freechips.rocketchip.subsystem.InTile
+import freechips.rocketchip.subsystem.WithNBanks
 // ---------------------
 // BOOM V3 Configs
 // Performant, stable baseline
 // ---------------------
 
-
-class YJPFPGACUTESmallBoomConfig extends Config(
-  new cute.WithCUTE(Seq(0)) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new boom.v3.common.WithNSmallBoomsMMIOSpeedUp(1) ++                          // small boom config
-  new chipyard.config.YJPAbstractConfig)
-
-class CUTESmallBoomConfig extends Config(
-  new cute.WithCUTE(Seq(0)) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
-  new chipyard.config.AbstractConfig)
-
-class CUTEShuttle512D512V256M4CoreConfig extends Config(
-  new cute.WithCUTE(Seq(0,1,2,3)) ++
-  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new shuttle.common.WithTCM ++
-  new shuttle.common.WithShuttleTileBeatBytes(64) ++
-  new shuttle.common.WithNShuttleCores(4) ++
-  new chipyard.config.AbstractConfig)
-
-class CUTEShuttle512D512V256M2Shuttle1BoomConfig extends Config(
-  new cute.WithCUTE(Seq(1,2)) ++
-  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new shuttle.common.WithTCM ++
-  new shuttle.common.WithShuttleTileBeatBytes(64) ++
-//   new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
-//   new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
-  new shuttle.common.WithNShuttleCores(2) ++
-//   new boom.v3.common.WithBoomCommitLogPrintf ++ // enable commit log printf
-  // new freechips.rocketchip.subsystem.WithoutTLMonitors ++
-  new boom.v3.common.WithNSmallBooms(1) ++                          // small boom config
-  new chipyard.config.AbstractConfig)
-
-class CUTETestConfig128bitdram512bitL2Widen3issueBoom extends Config(
-// new freechips.rocketchip.subsystem.WithNBanks(8) ++
-//   new freechips.rocketchip.subsystem.WithInclusiveCache(nWays=16, capacityKB=2048) ++
-//   new freechips.rocketchip.subsystem.WithNMemoryChannels(4) ++
-  new boom.bobcat.common.WithVector(3) ++
-  new cute.WithCUTE(Seq(0)) ++
-  // new freechips.rocketchip.subsystem.WithNBanks(2) ++
+class CUTEv3Shuttle1024D1024V1024M256S1CoreConfig extends Config(
+//   new cute.WithCUTE(Seq(0,1,2,3)) ++
+  new freechips.rocketchip.subsystem.WithNBitMemoryBus(256) ++
+  new WithNBanks(4) ++
   new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
-  new freechips.rocketchip.subsystem.WithNMemoryChannels(1) ++
-//   new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=4096) ++
-  new boom.bobcat.common.WithBoomCommitLogPrintf ++
-  new boom.bobcat.common.WithBoomMemtraceLogPrintf ++
+  new cutev3.shuttle.WithShuttleTensorUnit(vLen = 1024, dLen = 1024, VectorParams.refParams, mLen = Option(512)) ++
+  new cutev3.common.WithCUTETCM ++
+  new cutev3.common.WithCUTESGTCM ++
   new chipyard.config.WithSystemBusWidth(256) ++
-  new boom.bobcat.common.WithN3IssueWidenBooms(1) ++                    // 3 issue boom config
-  new chipyard.config.AbstractConfig)
-
-
-class CUTEShuttle512D512V256M1CoreConfig extends Config(
-//   new cute.WithCUTE(Seq(0,1,2,3)) ++
-  new saturn.shuttle.WithShuttleVectorUnit(512, 512, VectorParams.refParams) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new shuttle.common.WithTCM ++
+  new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
+  new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
   new shuttle.common.WithShuttleTileBeatBytes(64) ++
   new shuttle.common.WithNShuttleCores(1) ++
-  new chipyard.config.AbstractConfig)
-
-class CUTEShuttle1024D1024V512M1CoreConfig extends Config(
-//   new cute.WithCUTE(Seq(0,1,2,3)) ++
-  new saturn.shuttle.WithShuttleVectorUnit(vLen = 1024, dLen = 1024, VectorParams.refParams, mLen = Option(512)) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  new shuttle.common.WithTCM ++
-  new shuttle.common.WithShuttleTileBeatBytes(64) ++
-  new shuttle.common.WithNShuttleCores(1) ++
-  new chipyard.config.AbstractConfig)
-
-class CUTEShuttle1024D1024V1024M256S1CoreConfig extends Config(
-//   new cute.WithCUTE(Seq(0,1,2,3)) ++
-  new saturn.shuttle.WithShuttleVectorUnit(vLen = 1024, dLen = 1024, VectorParams.refParams, mLen = Option(1024)) ++
-  new chipyard.config.WithSystemBusWidth(256) ++
-  // new shuttle.common.WithTCM ++
-  // new shuttle.common.WithSGTCM ++
-  new shuttle.common.WithShuttleTileBeatBytes(64) ++
-  new shuttle.common.WithNShuttleCores(1) ++
+  new freechips.rocketchip.subsystem.WithoutTLMonitors ++
   new chipyard.config.AbstractConfig)
 
 // class SmallBoomV3Config extends Config(
