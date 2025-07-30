@@ -4,6 +4,7 @@ import org.chipsalliance.cde.config.{Config}
 import saturn.common.{VectorParams}
 import freechips.rocketchip.subsystem.InTile
 import freechips.rocketchip.subsystem.WithNBanks
+import cute._
 // ---------------------
 // BOOM V3 Configs
 // Performant, stable baseline
@@ -11,6 +12,7 @@ import freechips.rocketchip.subsystem.WithNBanks
 
 class CUTEv3Shuttle1024D1024V1024M256S1CoreConfig extends Config(
 //   new cute.WithCUTE(Seq(0,1,2,3)) ++
+  new cute.WithCuteCoustomParams(CoustomCuteParam = Cutev3Params.baseParams) ++
   new freechips.rocketchip.subsystem.WithNBitMemoryBus(256) ++
   new WithNBanks(4) ++
   new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
