@@ -5,23 +5,41 @@ import saturn.common.{VectorParams}
 import freechips.rocketchip.subsystem.InTile
 import freechips.rocketchip.subsystem.WithNBanks
 import cute._
+import spire.std.seq
 // ---------------------
 // BOOM V3 Configs
 // Performant, stable baseline
 // ---------------------
 
-class CUTEv3Shuttle1024D1024V1024M256S1CoreConfig extends Config(
+class CUTEv3Shuttle512D512V512M256S4CoreConfig extends Config(
 //   new cute.WithCUTE(Seq(0,1,2,3)) ++
-  new cute.WithCuteCoustomParams(CoustomCuteParam = Cutev3Params.baseParams) ++
+  new cute.WithCuteCoustomParams(CoustomCuteParam = Cutev3Params.CUTE_8Tops_128SCP) ++
   new freechips.rocketchip.subsystem.WithNBitMemoryBus(256) ++
   new WithNBanks(4) ++
   new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
-  new cutev3.shuttle.WithShuttleTensorUnit(vLen = 1024, dLen = 1024, VectorParams.refParams, mLen = Option(512)) ++
+  new cutev3.shuttle.WithShuttleTensorUnit(vLen = 512, dLen = 512, VectorParams.refParams, mLen = Option(512),cores = Seq(0,1,2,3)) ++
   new cutev3.common.WithCUTETCM ++
   new cutev3.common.WithCUTESGTCM ++
   new chipyard.config.WithSystemBusWidth(256) ++
-  new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
-  new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
+  // new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
+  // new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+  new shuttle.common.WithNShuttleCores(4) ++
+  new freechips.rocketchip.subsystem.WithoutTLMonitors ++
+  new chipyard.config.AbstractConfig)
+
+class CUTEv3Shuttle512D512V512M256S1CoreConfig extends Config(
+//   new cute.WithCUTE(Seq(0,1,2,3)) ++
+  new cute.WithCuteCoustomParams(CoustomCuteParam = Cutev3Params.CUTE_8Tops_128SCP) ++
+  new freechips.rocketchip.subsystem.WithNBitMemoryBus(256) ++
+  new WithNBanks(4) ++
+  new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
+  new cutev3.shuttle.WithShuttleTensorUnit(vLen = 512, dLen = 512, VectorParams.refParams, mLen = Option(512),cores = Seq(0)) ++
+  new cutev3.common.WithCUTETCM ++
+  new cutev3.common.WithCUTESGTCM ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  // new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
+  // new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
   new shuttle.common.WithShuttleTileBeatBytes(64) ++
   new shuttle.common.WithNShuttleCores(1) ++
   new freechips.rocketchip.subsystem.WithoutTLMonitors ++

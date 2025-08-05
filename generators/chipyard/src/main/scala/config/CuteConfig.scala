@@ -9,6 +9,26 @@ import cute._
 // Performant, stable baseline
 // ---------------------
 
+class CUTEShuttle512D512V512M256S1CoreConfig extends Config(
+//   new cute.WithCUTE(Seq(0,1,2,3)) ++
+  new cute.WithCuteCoustomParams(CoustomCuteParam = CuteParams.CUTE_2Tops) ++
+  new cute.WithCUTE(Seq(0)) ++
+  new freechips.rocketchip.subsystem.WithNBitMemoryBus(64) ++
+  new freechips.rocketchip.subsystem.WithNBanks(4) ++
+  new freechips.rocketchip.subsystem.WithInclusiveCache(capacityKB=512,outerLatencyCycles=40) ++
+  new saturn.shuttle.WithShuttleVectorUnit(vLen = 512, dLen = 512, VectorParams.refParams, mLen = Option(512)) ++
+  new shuttle.common.WithTCM(address = 0x70000000L, size = 2L << 20, banks = 2) ++
+  // new cutev3.shuttle.WithShuttleTensorUnit(vLen = 512, dLen = 512, VectorParams.refParams, mLen = Option(512)) ++
+  // new cutev3.common.WithCUTETCM ++
+  // new cutev3.common.WithCUTESGTCM ++
+  new chipyard.config.WithSystemBusWidth(256) ++
+  new shuttle.common.WithShuttleDebugROB ++ // enable debug ROB
+  new shuttle.common.WithShuttleDebugPrintf ++ // enable debug printf
+  new shuttle.common.WithShuttleTileBeatBytes(64) ++
+  new shuttle.common.WithNShuttleCores(1) ++
+  new freechips.rocketchip.subsystem.WithoutTLMonitors ++
+  new chipyard.config.AbstractConfig)
+
 class VerifyL2DramPerformenceTest1CUTEM256Config extends Config(
   new cute.WithCuteCoustomParams(CoustomCuteParam = CuteParams.dram_L2_8Tops_PerformanceTestParams.copy(Debug = CuteDebugParams.CMLDebugEnable)) ++
   new cute.WithCUTE(Seq(0)) ++

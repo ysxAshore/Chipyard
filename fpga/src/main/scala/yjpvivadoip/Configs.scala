@@ -67,6 +67,38 @@ class CUTEBoomVCU118Config extends Config(
   new chipyard.YJPFPGACUTESmallBoomConfig
 )
 
+class VCU118CUTEv3Shuttle512D512V512M256S1CoreConfig extends Config(
+  new WithFPGAFrequency(25) ++
+  new chipyard.config.WithUniformBusFrequencies(25) ++
+  new WithYJPVivadoMMIODevicePort ++ //设置了MMIO的地址段,设置了前端总线的位宽
+  new WithFakeAxi4Mem(0) ++ //连接出去的假的ddr4，为了将axi4_mem的线实例化，0可以增加额外延迟
+  new WithFakeAXIMMIO ++ //连接出去的假的mmio，为了将axi4_mmio的线实例化
+  new WithVivadoIPL2FBusAXI4Punchthrough ++ //L2_S_x --> 前端总线，dma总线
+  new WithVivadoIPAXI4MMIOPunchthrough ++   //MMIO_M_x --> MMIO设备，各种blockDesign涉及的IP核通过这条总线连接
+  new WithVivadoIPAXI4MemPunchthrough ++    //MEM_M_x --> DDR4内存
+  new freechips.rocketchip.subsystem.WithCustomSlavePort(data_width = 64, id_bits = 8) ++ //设置访存总线的位宽
+//   new freechips.rocketchip.subsystem.WithDefaultSlavePort ++
+  new freechips.rocketchip.subsystem.WithNExtTopInterrupts(4) ++
+  new WithVCU118Tweaks ++ //基础的配置
+  new chipyard.CUTEv3Shuttle512D512V512M256S1CoreConfig
+)
+
+class VCU118CUTEv3Shuttle512D512V512M256S4CoreConfig extends Config(
+  new WithFPGAFrequency(25) ++
+  new chipyard.config.WithUniformBusFrequencies(25) ++
+  new WithYJPVivadoMMIODevicePort ++ //设置了MMIO的地址段,设置了前端总线的位宽
+  new WithFakeAxi4Mem(0) ++ //连接出去的假的ddr4，为了将axi4_mem的线实例化，0可以增加额外延迟
+  new WithFakeAXIMMIO ++ //连接出去的假的mmio，为了将axi4_mmio的线实例化
+  new WithVivadoIPL2FBusAXI4Punchthrough ++ //L2_S_x --> 前端总线，dma总线
+  new WithVivadoIPAXI4MMIOPunchthrough ++   //MMIO_M_x --> MMIO设备，各种blockDesign涉及的IP核通过这条总线连接
+  new WithVivadoIPAXI4MemPunchthrough ++    //MEM_M_x --> DDR4内存
+  new freechips.rocketchip.subsystem.WithCustomSlavePort(data_width = 64, id_bits = 8) ++ //设置访存总线的位宽
+//   new freechips.rocketchip.subsystem.WithDefaultSlavePort ++
+  new freechips.rocketchip.subsystem.WithNExtTopInterrupts(4) ++
+  new WithVCU118Tweaks ++ //基础的配置
+  new chipyard.CUTEv3Shuttle512D512V512M256S4CoreConfig
+)
+
 class WithFPGAFrequency(fMHz: Double) extends Config(
   new chipyard.harness.WithHarnessBinderClockFreqMHz(fMHz) ++
   new chipyard.config.WithSystemBusFrequency(fMHz) ++
