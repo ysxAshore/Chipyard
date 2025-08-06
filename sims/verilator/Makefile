@@ -89,7 +89,7 @@ RUNTIME_PROFILING_VFLAGS := $(if $(filter $(VERILATOR_PROFILE),all),\
                               $(if $(filter $(VERILATOR_PROFILE),threads),\
 								--prof-threads,))
 
-VERILATOR_THREADS ?= 4
+VERILATOR_THREADS ?= 1
 RUNTIME_THREADS := --threads $(VERILATOR_THREADS) --threads-dpi all
 
 USE_FST ?= 1
