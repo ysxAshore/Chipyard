@@ -1,0 +1,6 @@
+[submodule "src/main/resources/csrc/netrace"]
+	path = src/main/resources/csrc/netrace
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/netrace_2.git
+[submodule "espresso"]
+	path = espresso
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/espresso_2.git

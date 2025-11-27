@@ -1,0 +1,57 @@
+[submodule "src/axi_mem_if"]
+	path = src/axi_mem_if
+	url = https://github.com/pulp-platform/axi_mem_if.git
+[submodule "src/axi_node"]
+	path = src/axi_node
+	url = https://github.com/pulp-platform/axi_node.git
+[submodule "src/fpga-support"]
+	path = src/fpga-support
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/fpga-support_3.git
+[submodule "src/common_cells"]
+	path = src/common_cells
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/common_cells_3.git
+[submodule "src/axi"]
+	path = src/axi
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/axi_3.git
+[submodule "src/register_interface"]
+	path = src/register_interface
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/register_interface_3.git
+[submodule "fpga/src/apb_uart"]
+	path = fpga/src/apb_uart
+	url = https://github.com/pulp-platform/apb_uart.git
+[submodule "fpga/src/apb_node"]
+	path = fpga/src/apb_node
+	url = https://github.com/pulp-platform/apb_node.git
+[submodule "fpga/src/axi2apb"]
+    path = fpga/src/axi2apb
+    url = https://github.com/pulp-platform/axi2apb.git
+[submodule "fpga/src/axi_slice"]
+    path = fpga/src/axi_slice
+    url = https://github.com/pulp-platform/axi_slice.git
+[submodule "src/tech_cells_generic"]
+	path = src/tech_cells_generic
+	url = https://github.com/pulp-platform/tech_cells_generic.git
+[submodule "src/fpu"]
+	path = src/fpu
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/fpnew_3.git
+[submodule "fpga/src/ariane-ethernet"]
+	path = fpga/src/ariane-ethernet
+	url = https://github.com/lowRISC/ariane-ethernet.git
+[submodule "src/axi_riscv_atomics"]
+	path = src/axi_riscv_atomics
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/axi_riscv_atomics_3.git
+[submodule "src/riscv-dbg"]
+	path = src/riscv-dbg
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/riscv-dbg_3.git
+[submodule "src/rv_plic"]
+	path = src/rv_plic
+	url = https://github.com/pulp-platform/rv_plic.git
+[submodule "fpga/src/apb_timer"]
+	path = fpga/src/apb_timer
+	url = https://github.com/pulp-platform/apb_timer.git
+[submodule "tb/dromajo"]
+	path = tb/dromajo
+	url = https://github.com/kabylkas/dromajo.git
+[submodule "tb/common_verification"]
+	path = tb/common_verification
+	url = https://github.com/pulp-platform/common_verification.git

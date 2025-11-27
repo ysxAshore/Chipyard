@@ -1,0 +1,13 @@
+[submodule "src-sv/common_cells"]
+	path = src/common_cells
+	url = https://github.com/pulp-platform/common_cells.git
+[submodule "src-sv/fpu_div_sqrt_mvp"]
+	path = src/fpu_div_sqrt_mvp
+	url = https://github.com/pulp-platform/fpu_div_sqrt_mvp.git
+[submodule "tb/flexfloat"]
+	path = tb/flexfloat
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/flexfloat_4.git
+[submodule "src/common_cells"]
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/common_cells_4.git
+[submodule "src/fpu_div_sqrt_mvp"]
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/fpu_div_sqrt_mvp_4.git
