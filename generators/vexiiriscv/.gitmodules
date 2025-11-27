@@ -1,0 +1,3 @@
+[submodule "VexiiRiscv"]
+	path = VexiiRiscv
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/VexiiRiscv_2.git

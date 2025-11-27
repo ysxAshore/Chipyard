@@ -1,0 +1,68 @@
+= The Saturn Microarchitecture Manual
+Authors: Jerry Zhao, Daniel Grubb, Miles Rusch, Tianrui Wei, Kevin Anderson, Borivoje Nikolic, Krste Asanovic
+:docgroup: University of California, Berkeley Technical Report
+:description: Micro-architecture of the Saturn Vector Unit
+:company: University of California, Berkeley
+:revdate: 3/2024
+:revnumber: 1.0
+:revremark: This document is under development. Expect potential changes.
+:revinfo:
+:doctype: book
+:preface-title: Preamble
+:colophon:
+:appendix-caption: Appendix
+:imagesdir: ./
+// Settings:
+:experimental:
+:reproducible:
+:imagesoutdir: ../build/images
+:srcdir: ./
+:bibtex-file: {srcdir}/refs.bib
+:bibtex-order: alphabetical
+:bibtex-style: ieee
+:icons: font
+:lang: en
+:listing-caption: Listing
+:sectnums:
+:toc: left
+:toclevels: 4
+:source-highlighter: pygments
+ifdef::backend-pdf[]
+:source-highlighter: coderay
+endif::[]
+:data-uri:
+:hide-uri-scheme:
+:stem: latexmath
+:footnote:
+:xrefstyle: short
+:toclevels: 2
+
+[preface]
+
+[preface]
+
+include::intro.adoc[]
+
+include::background.adoc[]
+
+include::system.adoc[]
+
+include::frontend.adoc[]
+
+include::memory.adoc[]
+
+include::execute.adoc[]
+
+//include::design-space.adoc[]
+
+include::programming.adoc[]
+
+//include::eval-pd.adoc[]
+
+//include::eval-perf.adoc[]
+
+include::history.adoc[]
+
+// The index must precede the bibliography
+//include::index.adoc[]
+include::bibliography.adoc[]

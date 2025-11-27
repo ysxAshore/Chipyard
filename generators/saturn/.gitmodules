@@ -1,0 +1,6 @@
+[submodule "benchmarks/env"]
+	path = benchmarks/env
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/env_2.git
+[submodule "riscv-vector-tests"]
+	path = riscv-vector-tests
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/riscv-vector-tests_2.git

@@ -1,0 +1,13 @@
+*~
+target/
+/.bsp/
+/.idea/
+/test_run_dir/
+*.cmd
+*.in
+*.out
+*#
+*.o
+*.#*
+*.dump
+*.riscv

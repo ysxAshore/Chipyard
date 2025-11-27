@@ -1,0 +1,14 @@
+# IDEA
+.idea
+
+# Binaries
+build/
+
+# Output files
+out/
+
+# Go Vendor
+vendor/
+
+# macOS
+.DS_Store
