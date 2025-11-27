@@ -1,0 +1,12 @@
+[submodule "network-benchmarks"]
+	path = network-benchmarks
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/network-benchmarks_2.git
+[submodule "memcached-thread-imbalance/mutilate-loadgen-riscv-release"]
+	path = memcached-thread-imbalance/mutilate-loadgen-riscv-release
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/mutilate-loadgen-riscv-release_2.git
+[submodule "ccbench-cache-sweep/ccbench"]
+	path = ccbench-cache-sweep/ccbench
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/ccbench_2.git
+[submodule "runscripts/gapbs-scripts/gapbs"]
+	path = runscripts/gapbs-scripts/gapbs
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/gapbs_2.git
