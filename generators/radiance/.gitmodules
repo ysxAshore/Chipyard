@@ -1,0 +1,6 @@
+[submodule "src/main/resources/vsrc/vortex"]
+	path = src/main/resources/vsrc/vortex
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/vortex_2.git
+[submodule "cyclotron"]
+	path = cyclotron
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/cyclotron_2.git

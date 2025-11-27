@@ -1,0 +1,9 @@
+[submodule "third_party/fpnew"]
+	path = third_party/fpnew
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/cvfpu_3.git
+[submodule "third_party/softfloat"]
+	path = third_party/softfloat
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/berkeley-softfloat-3_3.git
+[submodule "third_party/ramulator"]
+	path = third_party/ramulator
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/ramulator_3.git
