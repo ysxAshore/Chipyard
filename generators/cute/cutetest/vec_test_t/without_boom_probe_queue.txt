@@ -1,0 +1,261 @@
+{'conv_2': 25700000.0, 'conv_3': 231220000.0, 'conv_4': 102760000.0, 'conv_5': 102760000.0, 'conv_6': 102760000.0, 'conv_7': 231220000.0, 'conv_8': 102760000.0, 'conv_9': 102760000.0, 'conv_10': 231220000.0, 'conv_11': 102760000.0, 'conv_12': 205520000.0, 'conv_13': 231220000.0, 'conv_14': 102760000.0, 'conv_15': 205520000.0, 'conv_16': 102760000.0, 'conv_17': 231220000.0, 'conv_18': 102760000.0, 'conv_19': 102760000.0, 'conv_20': 231220000.0, 'conv_21': 102760000.0, 'conv_22': 102760000.0, 'conv_23': 231220000.0, 'conv_24': 102760000.0, 'conv_25': 205520000.0, 'conv_26': 231220000.0, 'conv_27': 102760000.0, 'conv_28': 205520000.0, 'conv_29': 102760000.0, 'conv_30': 231220000.0, 'conv_31': 102760000.0, 'conv_32': 102760000.0, 'conv_33': 231220000.0, 'conv_34': 102760000.0, 'conv_35': 102760000.0, 'conv_36': 231220000.0, 'conv_37': 102760000.0, 'conv_38': 102760000.0, 'conv_39': 231220000.0, 'conv_40': 102760000.0, 'conv_41': 102760000.0, 'conv_42': 231220000.0, 'conv_43': 102760000.0, 'conv_44': 205520000.0, 'conv_45': 231220000.0, 'conv_46': 102760000.0, 'conv_47': 205520000.0, 'conv_48': 102760000.0, 'conv_49': 231220000.0, 'conv_50': 102760000.0, 'conv_51': 102760000.0, 'conv_52': 231220000.0, 'conv_53': 102760000.0}
+conv_2
+totalcycle = 829510
+op nums = 25700000.0
+op per cycle = 30.982146086243684
+
+conv_3
+totalcycle = 1006521
+op nums = 231220000.0
+op per cycle = 229.72198294918834
+
+conv_4
+totalcycle = 3307161
+op nums = 102760000.0
+op per cycle = 31.071967769334485
+
+conv_5
+totalcycle = 3307161
+op nums = 102760000.0
+op per cycle = 31.071967769334485
+
+conv_6
+totalcycle = 905734
+op nums = 102760000.0
+op per cycle = 113.45494372519967
+
+conv_7
+totalcycle = 1006521
+op nums = 231220000.0
+op per cycle = 229.72198294918834
+
+conv_8
+totalcycle = 3307161
+op nums = 102760000.0
+op per cycle = 31.071967769334485
+
+conv_9
+totalcycle = 905734
+op nums = 102760000.0
+op per cycle = 113.45494372519967
+
+conv_10
+totalcycle = 1006521
+op nums = 231220000.0
+op per cycle = 229.72198294918834
+
+conv_11
+totalcycle = 3307161
+op nums = 102760000.0
+op per cycle = 31.071967769334485
+
+conv_12
+totalcycle = 1784195
+op nums = 205520000.0
+op per cycle = 115.18920297389019
+
+conv_13
+totalcycle = 639675
+op nums = 231220000.0
+op per cycle = 361.4648063469731
+
+conv_14
+totalcycle = 1661548
+op nums = 102760000.0
+op per cycle = 61.845941254781685
+
+conv_15
+totalcycle = 1764823
+op nums = 205520000.0
+op per cycle = 116.45360469576836
+
+conv_16
+totalcycle = 512761
+op nums = 102760000.0
+op per cycle = 200.40525703007833
+
+conv_17
+totalcycle = 632624
+op nums = 231220000.0
+op per cycle = 365.49356331723106
+
+conv_18
+totalcycle = 1661548
+op nums = 102760000.0
+op per cycle = 61.845941254781685
+
+conv_19
+totalcycle = 512761
+op nums = 102760000.0
+op per cycle = 200.40525703007833
+
+conv_20
+totalcycle = 632624
+op nums = 231220000.0
+op per cycle = 365.49356331723106
+
+conv_21
+totalcycle = 1661548
+op nums = 102760000.0
+op per cycle = 61.845941254781685
+
+conv_22
+totalcycle = 512761
+op nums = 102760000.0
+op per cycle = 200.40525703007833
+
+conv_23
+totalcycle = 632624
+op nums = 231220000.0
+op per cycle = 365.49356331723106
+
+conv_24
+totalcycle = 1661548
+op nums = 102760000.0
+op per cycle = 61.845941254781685
+
+conv_25
+totalcycle = 1029405
+op nums = 205520000.0
+op per cycle = 199.64931198119302
+
+conv_26
+totalcycle = 476145
+op nums = 231220000.0
+op per cycle = 485.60837559986976
+
+conv_27
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_28
+totalcycle = 1105691
+op nums = 205520000.0
+op per cycle = 185.8747154494339
+
+conv_29
+totalcycle = 355651
+op nums = 102760000.0
+op per cycle = 288.93493902730484
+
+conv_30
+totalcycle = 474066
+op nums = 231220000.0
+op per cycle = 487.7379942877152
+
+conv_31
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_32
+totalcycle = 355651
+op nums = 102760000.0
+op per cycle = 288.93493902730484
+
+conv_33
+totalcycle = 474066
+op nums = 231220000.0
+op per cycle = 487.7379942877152
+
+conv_34
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_35
+totalcycle = 355651
+op nums = 102760000.0
+op per cycle = 288.93493902730484
+
+conv_36
+totalcycle = 474066
+op nums = 231220000.0
+op per cycle = 487.7379942877152
+
+conv_37
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_38
+totalcycle = 355651
+op nums = 102760000.0
+op per cycle = 288.93493902730484
+
+conv_39
+totalcycle = 474066
+op nums = 231220000.0
+op per cycle = 487.7379942877152
+
+conv_40
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_41
+totalcycle = 355651
+op nums = 102760000.0
+op per cycle = 288.93493902730484
+
+conv_42
+totalcycle = 474066
+op nums = 231220000.0
+op per cycle = 487.7379942877152
+
+conv_43
+totalcycle = 927069
+op nums = 102760000.0
+op per cycle = 110.84396091337322
+
+conv_44
+totalcycle = 699967
+op nums = 205520000.0
+op per cycle = 293.6138417953989
+
+conv_45
+totalcycle = 347779
+op nums = 231220000.0
+op per cycle = 664.8475037308176
+
+conv_46
+totalcycle = 610997
+op nums = 102760000.0
+op per cycle = 168.1841318369812
+
+conv_47
+totalcycle = 815538
+op nums = 205520000.0
+op per cycle = 252.00542463993094
+
+conv_48
+totalcycle = 293791
+op nums = 102760000.0
+op per cycle = 349.77245729106744
+
+conv_49
+totalcycle = 348822
+op nums = 231220000.0
+op per cycle = 662.8595673438028
+
+conv_50
+totalcycle = 610997
+op nums = 102760000.0
+op per cycle = 168.1841318369812
+
+conv_51
+totalcycle = 293791
+op nums = 102760000.0
+op per cycle = 349.77245729106744
+
+conv_52
+totalcycle = 348822
+op nums = 231220000.0
+op per cycle = 662.8595673438028
+
+conv_53
+totalcycle = 610997
+op nums = 102760000.0
+op per cycle = 168.1841318369812
+

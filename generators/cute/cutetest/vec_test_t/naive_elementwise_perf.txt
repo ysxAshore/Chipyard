@@ -1,0 +1,366 @@
+{'conv_2': 25700000.0, 'conv_3': 231220000.0, 'conv_4': 102760000.0, 'conv_5': 102760000.0, 'conv_6': 102760000.0, 'conv_7': 231220000.0, 'conv_8': 102760000.0, 'conv_9': 102760000.0, 'conv_10': 231220000.0, 'conv_11': 102760000.0, 'conv_12': 205520000.0, 'conv_13': 231220000.0, 'conv_14': 102760000.0, 'conv_15': 205520000.0, 'conv_16': 102760000.0, 'conv_17': 231220000.0, 'conv_18': 102760000.0, 'conv_19': 102760000.0, 'conv_20': 231220000.0, 'conv_21': 102760000.0, 'conv_22': 102760000.0, 'conv_23': 231220000.0, 'conv_24': 102760000.0, 'conv_25': 205520000.0, 'conv_26': 231220000.0, 'conv_27': 102760000.0, 'conv_28': 205520000.0, 'conv_29': 102760000.0, 'conv_30': 231220000.0, 'conv_31': 102760000.0, 'conv_32': 102760000.0, 'conv_33': 231220000.0, 'conv_34': 102760000.0, 'conv_35': 102760000.0, 'conv_36': 231220000.0, 'conv_37': 102760000.0, 'conv_38': 102760000.0, 'conv_39': 231220000.0, 'conv_40': 102760000.0, 'conv_41': 102760000.0, 'conv_42': 231220000.0, 'conv_43': 102760000.0, 'conv_44': 205520000.0, 'conv_45': 231220000.0, 'conv_46': 102760000.0, 'conv_47': 205520000.0, 'conv_48': 102760000.0, 'conv_49': 231220000.0, 'conv_50': 102760000.0, 'conv_51': 102760000.0, 'conv_52': 231220000.0, 'conv_53': 102760000.0}
+{'conv_2': 201850.88, 'conv_3': 201850.88, 'conv_4': 802160.64, 'conv_5': 802160.64, 'conv_6': 201850.88, 'conv_7': 201850.88, 'conv_8': 802160.64, 'conv_9': 201850.88, 'conv_10': 201850.88, 'conv_11': 802160.64, 'conv_12': 401080.32, 'conv_13': 99614.72, 'conv_14': 401080.32, 'conv_15': 401080.32, 'conv_16': 99614.72, 'conv_17': 99614.72, 'conv_18': 401080.32, 'conv_19': 99614.72, 'conv_20': 99614.72, 'conv_21': 401080.32, 'conv_22': 99614.72, 'conv_23': 99614.72, 'conv_24': 401080.32, 'conv_25': 201850.88, 'conv_26': 49807.36, 'conv_27': 201850.88, 'conv_28': 201850.88, 'conv_29': 49807.36, 'conv_30': 49807.36, 'conv_31': 201850.88, 'conv_32': 49807.36, 'conv_33': 49807.36, 'conv_34': 201850.88, 'conv_35': 49807.36, 'conv_36': 49807.36, 'conv_37': 201850.88, 'conv_38': 49807.36, 'conv_39': 49807.36, 'conv_40': 201850.88, 'conv_41': 49807.36, 'conv_42': 49807.36, 'conv_43': 201850.88, 'conv_44': 99614.72, 'conv_45': 26214.4, 'conv_46': 99614.72, 'conv_47': 99614.72, 'conv_48': 26214.4, 'conv_49': 26214.4, 'conv_50': 99614.72, 'conv_51': 26214.4, 'conv_52': 26214.4, 'conv_53': 99614.72}
+conv_2
+totalcycle = 724178
+conv op nums = 25700000.0
+conv op per cycle = 35.48851249278492
+element wise op nums = 201850.88
+element wise op per cycle = 0.27873103021632806
+
+conv_3
+totalcycle = 723976
+conv op nums = 231220000.0
+conv op per cycle = 319.37522790810743
+element wise op nums = 201850.88
+element wise op per cycle = 0.2788088002917224
+
+conv_4
+totalcycle = 2931872
+conv op nums = 102760000.0
+conv op per cycle = 35.04927909540389
+element wise op nums = 802160.64
+element wise op per cycle = 0.27360015716920794
+
+conv_5
+totalcycle = 2931872
+conv op nums = 102760000.0
+conv op per cycle = 35.04927909540389
+element wise op nums = 802160.64
+element wise op per cycle = 0.27360015716920794
+
+conv_6
+totalcycle = 723817
+conv op nums = 102760000.0
+conv op per cycle = 141.9695862351948
+element wise op nums = 201850.88
+element wise op per cycle = 0.27887004588176295
+
+conv_7
+totalcycle = 723976
+conv op nums = 231220000.0
+conv op per cycle = 319.37522790810743
+element wise op nums = 201850.88
+element wise op per cycle = 0.2788088002917224
+
+conv_8
+totalcycle = 2931872
+conv op nums = 102760000.0
+conv op per cycle = 35.04927909540389
+element wise op nums = 802160.64
+element wise op per cycle = 0.27360015716920794
+
+conv_9
+totalcycle = 723817
+conv op nums = 102760000.0
+conv op per cycle = 141.9695862351948
+element wise op nums = 201850.88
+element wise op per cycle = 0.27887004588176295
+
+conv_10
+totalcycle = 723976
+conv op nums = 231220000.0
+conv op per cycle = 319.37522790810743
+element wise op nums = 201850.88
+element wise op per cycle = 0.2788088002917224
+
+conv_11
+totalcycle = 2931872
+conv op nums = 102760000.0
+conv op per cycle = 35.04927909540389
+element wise op nums = 802160.64
+element wise op per cycle = 0.27360015716920794
+
+conv_12
+totalcycle = 1437589
+conv op nums = 205520000.0
+conv op per cycle = 142.9615835958678
+element wise op nums = 401080.32
+element wise op per cycle = 0.2789951230845534
+
+conv_13
+totalcycle = 366365
+conv op nums = 231220000.0
+conv op per cycle = 631.1192390102766
+element wise op nums = 99614.72
+element wise op per cycle = 0.2719002088081558
+
+conv_14
+totalcycle = 1427382
+conv op nums = 102760000.0
+conv op per cycle = 71.99194048965168
+element wise op nums = 401080.32
+element wise op per cycle = 0.280990176420888
+
+conv_15
+totalcycle = 1428376
+conv op nums = 205520000.0
+conv op per cycle = 143.8836832878738
+element wise op nums = 401080.32
+element wise op per cycle = 0.28079463670630145
+
+conv_16
+totalcycle = 366695
+conv op nums = 102760000.0
+conv op per cycle = 280.23289109477906
+element wise op nums = 99614.72
+element wise op per cycle = 0.271655517528191
+
+conv_17
+totalcycle = 367062
+conv op nums = 231220000.0
+conv op per cycle = 629.920830813323
+element wise op nums = 99614.72
+element wise op per cycle = 0.27138390789566885
+
+conv_18
+totalcycle = 1427382
+conv op nums = 102760000.0
+conv op per cycle = 71.99194048965168
+element wise op nums = 401080.32
+element wise op per cycle = 0.280990176420888
+
+conv_19
+totalcycle = 366695
+conv op nums = 102760000.0
+conv op per cycle = 280.23289109477906
+element wise op nums = 99614.72
+element wise op per cycle = 0.271655517528191
+
+conv_20
+totalcycle = 367062
+conv op nums = 231220000.0
+conv op per cycle = 629.920830813323
+element wise op nums = 99614.72
+element wise op per cycle = 0.27138390789566885
+
+conv_21
+totalcycle = 1427382
+conv op nums = 102760000.0
+conv op per cycle = 71.99194048965168
+element wise op nums = 401080.32
+element wise op per cycle = 0.280990176420888
+
+conv_22
+totalcycle = 366695
+conv op nums = 102760000.0
+conv op per cycle = 280.23289109477906
+element wise op nums = 99614.72
+element wise op per cycle = 0.271655517528191
+
+conv_23
+totalcycle = 367062
+conv op nums = 231220000.0
+conv op per cycle = 629.920830813323
+element wise op nums = 99614.72
+element wise op per cycle = 0.27138390789566885
+
+conv_24
+totalcycle = 1427382
+conv op nums = 102760000.0
+conv op per cycle = 71.99194048965168
+element wise op nums = 401080.32
+element wise op per cycle = 0.280990176420888
+
+conv_25
+totalcycle = 739622
+conv op nums = 205520000.0
+conv op per cycle = 277.8716695825706
+element wise op nums = 201850.88
+element wise op per cycle = 0.27291086527983216
+
+conv_26
+totalcycle = 192876
+conv op nums = 231220000.0
+conv op per cycle = 1198.8013023911735
+element wise op nums = 49807.36
+element wise op per cycle = 0.25823513552748917
+
+conv_27
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_28
+totalcycle = 718325
+conv op nums = 205520000.0
+conv op per cycle = 286.11004768036753
+element wise op nums = 201850.88
+element wise op per cycle = 0.2810021647582919
+
+conv_29
+totalcycle = 193226
+conv op nums = 102760000.0
+conv op per cycle = 531.8124890025152
+element wise op nums = 49807.36
+element wise op per cycle = 0.2577673812012876
+
+conv_30
+totalcycle = 193067
+conv op nums = 231220000.0
+conv op per cycle = 1197.6153356088819
+element wise op nums = 49807.36
+element wise op per cycle = 0.25797966509035725
+
+conv_31
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_32
+totalcycle = 193226
+conv op nums = 102760000.0
+conv op per cycle = 531.8124890025152
+element wise op nums = 49807.36
+element wise op per cycle = 0.2577673812012876
+
+conv_33
+totalcycle = 193067
+conv op nums = 231220000.0
+conv op per cycle = 1197.6153356088819
+element wise op nums = 49807.36
+element wise op per cycle = 0.25797966509035725
+
+conv_34
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_35
+totalcycle = 193226
+conv op nums = 102760000.0
+conv op per cycle = 531.8124890025152
+element wise op nums = 49807.36
+element wise op per cycle = 0.2577673812012876
+
+conv_36
+totalcycle = 193067
+conv op nums = 231220000.0
+conv op per cycle = 1197.6153356088819
+element wise op nums = 49807.36
+element wise op per cycle = 0.25797966509035725
+
+conv_37
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_38
+totalcycle = 193226
+conv op nums = 102760000.0
+conv op per cycle = 531.8124890025152
+element wise op nums = 49807.36
+element wise op per cycle = 0.2577673812012876
+
+conv_39
+totalcycle = 193067
+conv op nums = 231220000.0
+conv op per cycle = 1197.6153356088819
+element wise op nums = 49807.36
+element wise op per cycle = 0.25797966509035725
+
+conv_40
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_41
+totalcycle = 193226
+conv op nums = 102760000.0
+conv op per cycle = 531.8124890025152
+element wise op nums = 49807.36
+element wise op per cycle = 0.2577673812012876
+
+conv_42
+totalcycle = 193067
+conv op nums = 231220000.0
+conv op per cycle = 1197.6153356088819
+element wise op nums = 49807.36
+element wise op per cycle = 0.25797966509035725
+
+conv_43
+totalcycle = 716976
+conv op nums = 102760000.0
+conv op per cycle = 143.32418379415768
+element wise op nums = 201850.88
+element wise op per cycle = 0.2815308741157305
+
+conv_44
+totalcycle = 364241
+conv op nums = 205520000.0
+conv op per cycle = 564.241806935518
+element wise op nums = 99614.72
+element wise op per cycle = 0.27348574158318256
+
+conv_45
+totalcycle = 95367
+conv op nums = 231220000.0
+conv op per cycle = 2424.5284008095045
+element wise op nums = 26214.4
+element wise op per cycle = 0.2748791510690281
+
+conv_46
+totalcycle = 350987
+conv op nums = 102760000.0
+conv op per cycle = 292.77437625894976
+element wise op nums = 99614.72
+element wise op per cycle = 0.28381313268012776
+
+conv_47
+totalcycle = 351464
+conv op nums = 205520000.0
+conv op per cycle = 584.7540573145471
+element wise op nums = 99614.72
+element wise op per cycle = 0.28342794710126784
+
+conv_48
+totalcycle = 95666
+conv op nums = 102760000.0
+conv op per cycle = 1074.1538268559364
+element wise op nums = 26214.4
+element wise op per cycle = 0.2740200280141325
+
+conv_49
+totalcycle = 95509
+conv op nums = 231220000.0
+conv op per cycle = 2420.9236825848875
+element wise op nums = 26214.4
+element wise op per cycle = 0.274470468751636
+
+conv_50
+totalcycle = 350987
+conv op nums = 102760000.0
+conv op per cycle = 292.77437625894976
+element wise op nums = 99614.72
+element wise op per cycle = 0.28381313268012776
+
+conv_51
+totalcycle = 95666
+conv op nums = 102760000.0
+conv op per cycle = 1074.1538268559364
+element wise op nums = 26214.4
+element wise op per cycle = 0.2740200280141325
+
+conv_52
+totalcycle = 95509
+conv op nums = 231220000.0
+conv op per cycle = 2420.9236825848875
+element wise op nums = 26214.4
+element wise op per cycle = 0.274470468751636
+
+conv_53
+totalcycle = 350987
+conv op nums = 102760000.0
+conv op per cycle = 292.77437625894976
+element wise op nums = 99614.72
+element wise op per cycle = 0.28381313268012776
+

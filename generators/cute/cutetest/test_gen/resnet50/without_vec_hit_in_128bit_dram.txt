@@ -1,0 +1,260 @@
+conv_2
+totalcycle = 69778
+op nums = 25700000.0
+op per cycle = 368.31092894608616
+
+conv_3
+totalcycle = 229675
+op nums = 231220000.0
+op per cycle = 1006.7268967018613
+
+conv_4
+totalcycle = 201138
+op nums = 102760000.0
+op per cycle = 510.8930187234635
+
+conv_5
+totalcycle = 201138
+op nums = 102760000.0
+op per cycle = 510.8930187234635
+
+conv_6
+totalcycle = 113086
+op nums = 102760000.0
+op per cycle = 908.6889623826114
+
+conv_7
+totalcycle = 229675
+op nums = 231220000.0
+op per cycle = 1006.7268967018613
+
+conv_8
+totalcycle = 201138
+op nums = 102760000.0
+op per cycle = 510.8930187234635
+
+conv_9
+totalcycle = 113086
+op nums = 102760000.0
+op per cycle = 908.6889623826114
+
+conv_10
+totalcycle = 229675
+op nums = 231220000.0
+op per cycle = 1006.7268967018613
+
+conv_11
+totalcycle = 201138
+op nums = 102760000.0
+op per cycle = 510.8930187234635
+
+conv_12
+totalcycle = 215598
+op nums = 205520000.0
+op per cycle = 953.2555960630433
+
+conv_13
+totalcycle = 231714
+op nums = 231220000.0
+op per cycle = 997.8680614895949
+
+conv_14
+totalcycle = 125321
+op nums = 102760000.0
+op per cycle = 819.9743059822376
+
+conv_15
+totalcycle = 212155
+op nums = 205520000.0
+op per cycle = 968.7256958355919
+
+conv_16
+totalcycle = 105648
+op nums = 102760000.0
+op per cycle = 972.6639406330456
+
+conv_17
+totalcycle = 230941
+op nums = 231220000.0
+op per cycle = 1001.2081007703266
+
+conv_18
+totalcycle = 125321
+op nums = 102760000.0
+op per cycle = 819.9743059822376
+
+conv_19
+totalcycle = 105648
+op nums = 102760000.0
+op per cycle = 972.6639406330456
+
+conv_20
+totalcycle = 230941
+op nums = 231220000.0
+op per cycle = 1001.2081007703266
+
+conv_21
+totalcycle = 125321
+op nums = 102760000.0
+op per cycle = 819.9743059822376
+
+conv_22
+totalcycle = 105648
+op nums = 102760000.0
+op per cycle = 972.6639406330456
+
+conv_23
+totalcycle = 230941
+op nums = 231220000.0
+op per cycle = 1001.2081007703266
+
+conv_24
+totalcycle = 125321
+op nums = 102760000.0
+op per cycle = 819.9743059822376
+
+conv_25
+totalcycle = 209474
+op nums = 205520000.0
+op per cycle = 981.1241490590718
+
+conv_26
+totalcycle = 247431
+op nums = 231220000.0
+op per cycle = 934.4827446843766
+
+conv_27
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_28
+totalcycle = 241185
+op nums = 205520000.0
+op per cycle = 852.1259613989262
+
+conv_29
+totalcycle = 116269
+op nums = 102760000.0
+op per cycle = 883.8125381658051
+
+conv_30
+totalcycle = 246532
+op nums = 231220000.0
+op per cycle = 937.8904158486525
+
+conv_31
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_32
+totalcycle = 116269
+op nums = 102760000.0
+op per cycle = 883.8125381658051
+
+conv_33
+totalcycle = 246532
+op nums = 231220000.0
+op per cycle = 937.8904158486525
+
+conv_34
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_35
+totalcycle = 116269
+op nums = 102760000.0
+op per cycle = 883.8125381658051
+
+conv_36
+totalcycle = 246532
+op nums = 231220000.0
+op per cycle = 937.8904158486525
+
+conv_37
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_38
+totalcycle = 116269
+op nums = 102760000.0
+op per cycle = 883.8125381658051
+
+conv_39
+totalcycle = 246532
+op nums = 231220000.0
+op per cycle = 937.8904158486525
+
+conv_40
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_41
+totalcycle = 116269
+op nums = 102760000.0
+op per cycle = 883.8125381658051
+
+conv_42
+totalcycle = 246532
+op nums = 231220000.0
+op per cycle = 937.8904158486525
+
+conv_43
+totalcycle = 124528
+op nums = 102760000.0
+op per cycle = 825.1959398689452
+
+conv_44
+totalcycle = 235207
+op nums = 205520000.0
+op per cycle = 873.7835183476682
+
+conv_45
+totalcycle = 235336
+op nums = 231220000.0
+op per cycle = 982.5101131998505
+
+conv_46
+totalcycle = 164302
+op nums = 102760000.0
+op per cycle = 625.4336526639968
+
+conv_47
+totalcycle = 330322
+op nums = 205520000.0
+op per cycle = 622.1807811771544
+
+conv_48
+totalcycle = 156088
+op nums = 102760000.0
+op per cycle = 658.3465737276408
+
+conv_49
+totalcycle = 235203
+op nums = 231220000.0
+op per cycle = 983.0656921893003
+
+conv_50
+totalcycle = 164302
+op nums = 102760000.0
+op per cycle = 625.4336526639968
+
+conv_51
+totalcycle = 156088
+op nums = 102760000.0
+op per cycle = 658.3465737276408
+
+conv_52
+totalcycle = 235203
+op nums = 231220000.0
+op per cycle = 983.0656921893003
+
+conv_53
+totalcycle = 164302
+op nums = 102760000.0
+op per cycle = 625.4336526639968
+
