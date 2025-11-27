@@ -1,0 +1,6 @@
+[submodule "berkeley-softfloat-3"]
+	path = berkeley-softfloat-3
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/berkeley-softfloat-3_2.git
+[submodule "berkeley-testfloat-3"]
+	path = berkeley-testfloat-3
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/berkeley-testfloat-3_2.git

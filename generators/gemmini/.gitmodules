@@ -1,0 +1,9 @@
+[submodule "software/gemmini-rocc-tests"]
+	path = software/gemmini-rocc-tests
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/gemmini-rocc-tests_2.git
+[submodule "software/onnxruntime-riscv"]
+	path = software/onnxruntime-riscv
+	url = https://github.com/pranav-prakash/onnxruntime-riscv.git
+[submodule "software/libgemmini"]
+	path = software/libgemmini
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/libgemmini_2.git

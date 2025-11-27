@@ -1,0 +1,6 @@
+[submodule "rocc-software"]
+	path = rocc-software
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/rocc-software_3.git
+[submodule "riscv-tests"]
+	path = riscv-tests
+	url = ssh://git@10.208.130.232:2247/cute-dev1/chipyard-dep/riscv-tests_3.git
