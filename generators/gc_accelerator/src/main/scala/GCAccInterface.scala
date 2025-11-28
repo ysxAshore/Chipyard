@@ -124,13 +124,6 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val acc = Module(new SpinalGCAcc)
   val mem = outer.LLCMemPort.module
 
-  val rd_data = RegInit(0.U(64.W))
-  val rd = RegInit(0.U(5.W))
-
-  val canResp = RegInit(false.B)
-  val acc_busy = RegInit(false.B)
-  val configCompleted = RegInit(false.B)
-
   // config reg
   val RegionAttrBase = RegInit(0.U(MMUAddrWidth.W))
   val RegionAttrBiasedBase = RegInit(0.U(MMUAddrWidth.W))
@@ -144,6 +137,10 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val TaskQueue_AgeTopAddr = RegInit(0.U(MMUAddrWidth.W))
   val TaskQueue_ElemsBase = RegInit(0.U(MMUAddrWidth.W))
 
+  val canResp = RegInit(false.B)
+  val rd_data = RegInit(0.U(64.W))
+  val rd = RegInit(0.U(5.W))
+
   rd := io.cmd.bits.inst.rd    //下一拍一定会返回
   io.resp.bits.rd := rd
   io.resp.bits.data := rd_data
@@ -155,6 +152,27 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
     canResp := true.B
   }.elsewhen(io.resp.fire){
     canResp := false.B
+  }
+
+  // profile counter
+  val acc_busy = RegInit(false.B)
+  val count = RegInit(0.U(64.W))
+  val memNum_r = RegInit(0.U(64.W))
+  val memNum_w = RegInit(0.U(64.W))
+  when(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
+    acc_busy := true.B
+  }.elsewhen(acc.io.ctrl2top.Done){
+    acc_busy := false.B
+  }
+  when(acc_busy){
+    count := count + 1.U
+  }
+  when(acc.io.mmu2llc.Request.fire){
+    when(acc.io.mmu2llc.Request.bits.RequestType_isWrite){
+      memNum_w := memNum_w + 1.U
+    }.otherwise{
+      memNum_r := memNum_r + 1.U
+    }
   }
 
   // 使用 5B opcode
@@ -176,10 +194,17 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U){
     TaskQueue_AgeTopAddr := io.cmd.bits.rs1
     TaskQueue_ElemsBase := io.cmd.bits.rs2
-  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 5.U){
-    rd_data := acc.io.ctrl2top.Done
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 16.U){
+    rd_data := acc_busy
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 17.U){
+    rd_data := count
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 18.U){
+    rd_data := memNum_r;
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 19.U){
+    rd_data := memNum_w;
   }
 
+  val configCompleted = RegInit(false.B)
   when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U){
     configCompleted := true.B
   }.elsewhen(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
