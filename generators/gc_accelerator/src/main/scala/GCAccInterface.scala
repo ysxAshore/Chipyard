@@ -125,17 +125,24 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val mem = outer.LLCMemPort.module
 
   // config reg
-  val RegionAttrBase = RegInit(0.U(MMUAddrWidth.W))
-  val RegionAttrBiasedBase = RegInit(0.U(MMUAddrWidth.W))
-  val RegionAttrShiftBy = RegInit(0.U(32.W))
-  val HeapRegionBias = RegInit(0.U(32.W))
-  val HeapRegionShiftBy = RegInit(0.U(32.W))
-  val HeapRegionBiasedBase = RegInit(0.U(MMUAddrWidth.W))
-  val HumongousReclaimCandidatesBoolBase = RegInit(0.U(MMUAddrWidth.W))
+  val ChunkSize             = RegInit(0.U(32.W))
+  val CardTablePtr          = RegInit(0.U(MMUAddrWidth.W))
+  val AgeThreshold          = RegInit(0.U(32.W))
+  val StepperOffset         = RegInit(0.U(MMUDataWidth.W))
+  val YoungWordsBase        = RegInit(0.U(MMUAddrWidth.W))
+  val RegionAttrBase        = RegInit(0.U(MMUAddrWidth.W))
+  val HeapRegionBias        = RegInit(0.U(32.W))
+  val PlabAllocatorPtr      = RegInit(0.U(MMUAddrWidth.W))
+  val RegionAttrShiftBy     = RegInit(0.U(32.W))
+  val HeapRegionShiftBy     = RegInit(0.U(32.W))
+  val LogOfHRGrainBytes     = RegInit(0.U(32.W))
+  val RegionAttrBiasedBase  = RegInit(0.U(MMUAddrWidth.W))
+  val HeapRegionBiasedBase  = RegInit(0.U(MMUAddrWidth.W))
   val ParScanThreadStatePtr = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_BottomAddr = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_AgeTopAddr = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_ElemsBase = RegInit(0.U(MMUAddrWidth.W))
+  val TaskQueue_BottomAddr  = RegInit(0.U(MMUAddrWidth.W))
+  val TaskQueue_AgeTopAddr  = RegInit(0.U(MMUAddrWidth.W))
+  val TaskQueue_ElemsBase   = RegInit(0.U(MMUAddrWidth.W))
+  val HumongousReclaimCandidatesBoolBase = RegInit(0.U(MMUAddrWidth.W))
 
   val canResp = RegInit(false.B)
   val rd_data = RegInit(0.U(64.W))
@@ -178,22 +185,30 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   // 使用 5B opcode
   // funct(6,0) === 0
   when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 0.U){
-    // config regionAttrBase and BiasedBase
-    RegionAttrBase := io.cmd.bits.rs1
-    RegionAttrBiasedBase := io.cmd.bits.rs2
+    ChunkSize:= io.cmd.bits.rs1(31, 0)
+    AgeThreshold := io.cmd.bits.rs1(63, 32)
+    HeapRegionBias := io.cmd.bits.rs2(31, 0)
+    RegionAttrShiftBy := io.cmd.bits.rs2(63, 32)
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 1.U){
-    RegionAttrShiftBy := io.cmd.bits.rs1(63, 32)
-    HeapRegionBias := io.cmd.bits.rs1(31, 0)
-    HeapRegionShiftBy := io.cmd.bits.rs2(31, 0)
+    HeapRegionShiftBy := io.cmd.bits.rs1(31, 0)
+    LogOfHRGrainBytes := io.cmd.bits.rs1(63, 32)
+    StepperOffset := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 2.U){
-    HeapRegionBiasedBase := io.cmd.bits.rs1
-    HumongousReclaimCandidatesBoolBase := io.cmd.bits.rs2
+    YoungWordsBase := io.cmd.bits.rs1
+    RegionAttrBase := io.cmd.bits.rs2
+
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 3.U){
+    PlabAllocatorPtr := io.cmd.bits.rs1
+    RegionAttrBiasedBase := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U) {
+    HeapRegionBiasedBase := io.cmd.bits.rs1
     ParScanThreadStatePtr := io.cmd.bits.rs1
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 5.U) {
     TaskQueue_BottomAddr := io.cmd.bits.rs2
-  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U){
     TaskQueue_AgeTopAddr := io.cmd.bits.rs1
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 6.U) {
     TaskQueue_ElemsBase := io.cmd.bits.rs2
+    HumongousReclaimCandidatesBoolBase := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 16.U){
     rd_data := acc_busy
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 17.U){
@@ -205,28 +220,31 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   }
 
   val configCompleted = RegInit(false.B)
-  when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U){
+  when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 7.U){
     configCompleted := true.B
   }.elsewhen(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
     configCompleted := false.B
   }
 
   acc.io.ctrl2top.Valid := configCompleted
+  acc.io.ctrl2top.ChunkSize := ChunkSize
+  acc.io.ctrl2top.CardTablePtr := CardTablePtr
+  acc.io.ctrl2top.AgeThreshold := AgeThreshold
+  acc.io.ctrl2top.StepperOffset := StepperOffset
+  acc.io.ctrl2top.YoungWordsBase := YoungWordsBase
   acc.io.ctrl2top.RegionAttrBase := RegionAttrBase
-  acc.io.ctrl2top.RegionAttrBiasedBase := RegionAttrBiasedBase
-  acc.io.ctrl2top.RegionAttrShiftBy := RegionAttrShiftBy
   acc.io.ctrl2top.HeapRegionBias := HeapRegionBias
+  acc.io.ctrl2top.PlabAllocatorPtr := PlabAllocatorPtr
+  acc.io.ctrl2top.RegionAttrShiftBy := RegionAttrShiftBy
   acc.io.ctrl2top.HeapRegionShiftBy := HeapRegionShiftBy
+  acc.io.ctrl2top.LogOfHRGrainBytes := LogOfHRGrainBytes
+  acc.io.ctrl2top.RegionAttrBiasedBase := RegionAttrBiasedBase
   acc.io.ctrl2top.HeapRegionBiasedBase := HeapRegionBiasedBase
-  acc.io.ctrl2top.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
   acc.io.ctrl2top.ParScanThreadStatePtr := ParScanThreadStatePtr
   acc.io.ctrl2top.TaskQueue_BottomAddr := TaskQueue_BottomAddr
   acc.io.ctrl2top.TaskQueue_AgeTopAddr := TaskQueue_AgeTopAddr
   acc.io.ctrl2top.TaskQueue_ElemsBase := TaskQueue_ElemsBase
+  acc.io.ctrl2top.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
 
   mem.io.mmu <> acc.io.mmu2llc
 }
-
-
-
-
