@@ -1,5 +1,10 @@
 ![CHIPYARD](https://github.com/ucb-bar/chipyard/raw/main/docs/_static/images/chipyard-logo-full.png)
 
+# Quick Use
+
+* download > 100M files in wolai/storage/chipyard(1.2.3.4)
+* ./build-setup.sh --skip-firesim --skip-marshal --skip-clean
+
 # Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
 
 ## Quick Links
@@ -100,12 +105,3 @@ This work is supported by the NSF CCRI ENS Chipyard Award #2016662.
 [nvdla]: http://nvdla.org/
 [saturn]: https://github.com/ucb-bar/saturn-vectors
 [ara]: https://github.com/pulp-platform/ara
-
-[Quick Use]:
-    1. install circt-full-static-linux-x64.tar.gz in circt-tar directory:
-       mkdir circt-tar 
-       wget https://github.com/llvm/circt/releases/download/firtool-1.137.0/circt-full-static-linux-x64.tar.gz 
-    2. submodule init install-circt
-       git clone git@github.com:circt/install-circt.git tools/install-circt
-    3. download > 100M files in wolai/storage/chipyard(1.2.3)
-    3. ./build-setup.sh --skip-firesim --skip-marshal --skip-clean
