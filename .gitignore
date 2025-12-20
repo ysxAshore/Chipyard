@@ -30,3 +30,7 @@ project/project/
 .classpath_cache/
 .vscode/
 tests/build/
+circt-tar
+generators/cute/cutetest/CUTE_resnet50_params.h
+generators/cute/cutetest/imagenet/resnet50_params_int8_CUTE_Gloden_transpose_weight.h
+generators/cute/cutetest/vec_cute_test/resnet50_params_int8_CUTE_Gloden_transpose_weight.h
