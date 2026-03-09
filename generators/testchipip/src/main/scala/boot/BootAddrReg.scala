@@ -9,7 +9,7 @@ import freechips.rocketchip.regmapper._
 import freechips.rocketchip.subsystem._
 
 case class BootAddrRegParams(
-  defaultBootAddress: BigInt = 0x80000000L, // This should be DRAM_BASE
+  defaultBootAddress: BigInt = 0xFE00000000L, // This should be DRAM_BASE
   bootRegAddress: BigInt = 0x1000,
   slaveWhere: TLBusWrapperLocation = PBUS
 )

@@ -203,7 +203,7 @@ trait HasTileParameters extends HasNonDiplomaticTileParameters {
   def vaddrBits: Int =
     if (usingVM) {
       val v = maxHVAddrBits
-      require(v == xLen || xLen > v && v > paddrBits)
+      require(v == xLen || xLen > v && v > paddrBits, s"Requests $paddrBits $v")
       v
     } else {
       // since virtual addresses sign-extend but physical addresses

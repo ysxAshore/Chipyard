@@ -48,7 +48,7 @@ class GCAcc2TLImp(outer: GCAcc2TL) extends LazyModuleImp(outer) with HWParameter
   })
 
   val busy = RegInit(VecInit(Seq.fill(SourceMaxNum)(false.B)))
-  val id = WireInit(0.U(SourceMaxNumBitSize.W))
+  val id = WireInit(0.U(SourceMaxNumBitSize.W)) // 从最小的开始找, 一直覆盖 保留最大的空闲id
 
   val is_idle = !busy.reduce(_|_)
   val is_full = busy.reduce(_&_)
@@ -65,6 +65,17 @@ class GCAcc2TLImp(outer: GCAcc2TL) extends LazyModuleImp(outer) with HWParameter
   io.mmu.ConherentRequsetSourceID.valid := !is_full
   io.mmu.Response.bits.ReseponseData := 0.U
 
+  io.mmu.Request.ready := tl_out.a.ready && !is_full
+  when(io.mmu.Request.fire){
+    if(DebugEnable){
+      printf("[GCAcc2YGJK.node]sourceid: %x\n", io.mmu.ConherentRequsetSourceID.bits)
+      printf("[GCAccYGJK.node.io.mmu.Request.bits] RequestType_isWrite %x, RequestPhysicalAddr %x, RequestData %x\n", io.mmu.Request.bits.RequestType_isWrite, io.mmu.Request.bits.RequestVirtualAddr, io.mmu.Request.bits.RequestData)
+    }
+  }
+
+  // tilelink 执行内存访问操作有两个最基本的通道:A and D
+  //    A: 传输对指定地址范围进行操作的请求
+  //    D: 向原始请求者发送数据想要或者确认消息
   when(!is_full){
     when(tl_out.a.fire){
       busy(id) := true.B
@@ -75,17 +86,18 @@ class GCAcc2TLImp(outer: GCAcc2TL) extends LazyModuleImp(outer) with HWParameter
     }
   }
 
-  // AccessAck 响应 Put 操作(写)
-  // AccessAckData 响应 Get 操作(读)
-  // read 需要等待上游是否可以确认接受
-  // write 写回的ack直接确认
+  // AccessAck 响应 Put 操作(写) AccessAckData 响应 Get 操作(读)
+  // 本来是"read 需要等待上游是否可以确认接受 但是 write 写回的ack直接确认" 但是"这里write也需要返回给上级接收 所以不用直接置true"
   tl_out.d.ready := io.mmu.Response.ready
-  when(tl_out.d.bits.opcode === TLMessages.AccessAck && tl_out.d.valid && busy(tl_out.d.bits.source)){
-    tl_out.d.ready := true.B
-  }
+  //when(tl_out.d.bits.opcode === TLMessages.AccessAck && tl_out.d.valid && busy(tl_out.d.bits.source)){
+  //  tl_out.d.ready := true.B
+  //}
 
   when(tl_out.d.fire){
     busy(tl_out.d.bits.source) := false.B
+    if(DebugEnable){
+      printf("[GccAcc2YGJK.node]tl_out.d.fire: %x, tl_out.d.data: %x\n", tl_out.d.bits.source, tl_out.d.bits.data)
+    }
   }
 
   tl_out.a.valid := io.mmu.Request.valid && !is_full
@@ -94,12 +106,8 @@ class GCAcc2TLImp(outer: GCAcc2TL) extends LazyModuleImp(outer) with HWParameter
     (io.mmu.Request.bits.RequestType_isWrite === 1.U) -> edge.Put(id, io.mmu.Request.bits.RequestVirtualAddr, log2Ceil(MMUDataWidth / 8).U, io.mmu.Request.bits.RequestData, io.mmu.Request.bits.RequestWStrb)._2
   ))
 
-  // 这里read、write都要判断
-  io.mmu.Response.valid := tl_out.d.valid && (
-    tl_out.d.bits.opcode === TLMessages.AccessAckData ||
-    tl_out.d.bits.opcode === TLMessages.AccessAck
-  )
-  io.mmu.Request.ready := tl_out.a.ready && !is_full
+  // read和write都需要返回Response
+  io.mmu.Response.valid := tl_out.d.valid && (tl_out.d.bits.opcode === TLMessages.AccessAckData || tl_out.d.bits.opcode === TLMessages.AccessAck)
   io.mmu.Response.bits.ReseponseData := tl_out.d.bits.data
   io.mmu.Response.bits.ReseponseSourceID := tl_out.d.bits.source
 
@@ -126,35 +134,46 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
 
   // config reg
   val ChunkSize             = RegInit(0.U(32.W))
-  val CardTablePtr          = RegInit(0.U(MMUAddrWidth.W))
   val AgeThreshold          = RegInit(0.U(32.W))
-  val StepperOffset         = RegInit(0.U(MMUDataWidth.W))
-  val YoungWordsBase        = RegInit(0.U(MMUAddrWidth.W))
-  val RegionAttrBase        = RegInit(0.U(MMUAddrWidth.W))
   val HeapRegionBias        = RegInit(0.U(32.W))
-  val PlabAllocatorPtr      = RegInit(0.U(MMUAddrWidth.W))
   val RegionAttrShiftBy     = RegInit(0.U(32.W))
   val HeapRegionShiftBy     = RegInit(0.U(32.W))
   val LogOfHRGrainBytes     = RegInit(0.U(32.W))
-  val RegionAttrBiasedBase  = RegInit(0.U(MMUAddrWidth.W))
-  val HeapRegionBiasedBase  = RegInit(0.U(MMUAddrWidth.W))
-  val ParScanThreadStatePtr = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_BottomAddr  = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_AgeTopAddr  = RegInit(0.U(MMUAddrWidth.W))
-  val TaskQueue_ElemsBase   = RegInit(0.U(MMUAddrWidth.W))
-  val HumongousReclaimCandidatesBoolBase = RegInit(0.U(MMUAddrWidth.W))
+  val StepperOffset         = RegInit(0.U(GCElementWidth.W))
+  val YoungWordsBase        = RegInit(0.U(GCElementWidth.W))
+  val RegionAttrBase        = RegInit(0.U(GCElementWidth.W))
+  val PlabAllocatorPtr      = RegInit(0.U(GCElementWidth.W))
+  val RegionAttrBiasedBase  = RegInit(0.U(GCElementWidth.W))
+  val HeapRegionBiasedBase  = RegInit(0.U(GCElementWidth.W))
+  val ParScanThreadStatePtr = RegInit(0.U(GCElementWidth.W))
+  val TaskQueue_BottomAddr  = RegInit(0.U(GCElementWidth.W))
+  val TaskQueue_ElemsBase   = RegInit(0.U(GCElementWidth.W))
+  val HumongousReclaimCandidatesBoolBase = RegInit(0.U(GCElementWidth.W))
+  val CardTablePtr          = RegInit(0.U(GCElementWidth.W))
+  val G1h = RegInit(0.U(GCElementWidth.W))
+  val IntArrayKlassObj = RegInit(0.U(GCElementWidth.W))
+  val ObjectKlass = RegInit(0.U(GCElementWidth.W))
+  val LockPtr = RegInit(0.U(GCElementWidth.W))
+  val Thread = RegInit(0.U(GCElementWidth.W))
+  val DummyRegion = RegInit(0.U(GCElementWidth.W))
+  val NumaPtr = RegInit(0.U(GCElementWidth.W))
+  val CompressedOopBase = RegInit(0.U(GCElementWidth.W))
+  val CompressedKlassPointerBase = RegInit(0.U(GCElementWidth.W))
+  val CompressedFlag = RegInit(0.U(32.W))
 
   val canResp = RegInit(false.B)
   val rd_data = RegInit(0.U(64.W))
   val rd = RegInit(0.U(5.W))
 
-  rd := io.cmd.bits.inst.rd    //下一拍一定会返回
   io.resp.bits.rd := rd
   io.resp.bits.data := rd_data
   io.resp.valid := canResp
 
-  io.cmd.ready := !canResp
+  io.cmd.ready := !canResp // 当存在响应未被CPU处理时 禁止接受新指令
   // xd 表示 inst needs wirte regfile
+  when(io.cmd.fire){
+    rd := io.cmd.bits.inst.rd
+  }
   when(io.cmd.fire && io.cmd.bits.inst.xd === true.B){
     canResp := true.B
   }.elsewhen(io.resp.fire){
@@ -196,19 +215,33 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 2.U){
     YoungWordsBase := io.cmd.bits.rs1
     RegionAttrBase := io.cmd.bits.rs2
-
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 3.U){
     PlabAllocatorPtr := io.cmd.bits.rs1
     RegionAttrBiasedBase := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 4.U) {
     HeapRegionBiasedBase := io.cmd.bits.rs1
-    ParScanThreadStatePtr := io.cmd.bits.rs1
+    ParScanThreadStatePtr := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 5.U) {
-    TaskQueue_BottomAddr := io.cmd.bits.rs2
-    TaskQueue_AgeTopAddr := io.cmd.bits.rs1
-  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 6.U) {
+    TaskQueue_BottomAddr := io.cmd.bits.rs1
     TaskQueue_ElemsBase := io.cmd.bits.rs2
-    HumongousReclaimCandidatesBoolBase := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 6.U) {
+    HumongousReclaimCandidatesBoolBase := io.cmd.bits.rs1
+    CardTablePtr := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 7.U) {
+    G1h := io.cmd.bits.rs1
+    IntArrayKlassObj := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 8.U) {
+    ObjectKlass := io.cmd.bits.rs1
+    LockPtr := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 9.U) {
+    Thread := io.cmd.bits.rs1
+    DummyRegion := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 10.U) {
+    NumaPtr := io.cmd.bits.rs1
+    CompressedOopBase := io.cmd.bits.rs2
+  }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 11.U){
+    CompressedKlassPointerBase := io.cmd.bits.rs1
+    CompressedFlag := io.cmd.bits.rs2(31, 0)
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 16.U){
     rd_data := acc_busy
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 17.U){
@@ -220,7 +253,7 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   }
 
   val configCompleted = RegInit(false.B)
-  when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 7.U){
+  when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 11.U){
     configCompleted := true.B
   }.elsewhen(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
     configCompleted := false.B
@@ -242,9 +275,18 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   acc.io.ctrl2top.HeapRegionBiasedBase := HeapRegionBiasedBase
   acc.io.ctrl2top.ParScanThreadStatePtr := ParScanThreadStatePtr
   acc.io.ctrl2top.TaskQueue_BottomAddr := TaskQueue_BottomAddr
-  acc.io.ctrl2top.TaskQueue_AgeTopAddr := TaskQueue_AgeTopAddr
   acc.io.ctrl2top.TaskQueue_ElemsBase := TaskQueue_ElemsBase
   acc.io.ctrl2top.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
+  acc.io.ctrl2top.G1h := G1h
+  acc.io.ctrl2top.IntArrayKlassObj := IntArrayKlassObj
+  acc.io.ctrl2top.ObjectKlass := ObjectKlass
+  acc.io.ctrl2top.LockPtr := LockPtr
+  acc.io.ctrl2top.Thread := Thread
+  acc.io.ctrl2top.DummyRegion := DummyRegion
+  acc.io.ctrl2top.NumaPtr := NumaPtr
+  acc.io.ctrl2top.CompressedOopBase := CompressedOopBase
+  acc.io.ctrl2top.CompressedKlassPointerBase := CompressedKlassPointerBase
+  acc.io.ctrl2top.CompressedFlag := CompressedFlag
 
   mem.io.mmu <> acc.io.mmu2llc
 }
