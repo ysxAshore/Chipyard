@@ -1,5 +1,5 @@
 
-bootrom.rv32.elf:     file format elf32-littleriscv
+bootrom.rv32.elf：     文件格式 elf32-littleriscv
 
 
 Disassembly of section .text.hang:
