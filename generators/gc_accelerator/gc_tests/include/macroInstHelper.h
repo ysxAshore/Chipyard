@@ -162,4 +162,3 @@ uint64_t readCycles(){
     asm volatile("rdcycle %0" :"=r"(res));
     return res;
 }
-
