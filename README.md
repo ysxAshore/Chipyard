@@ -2,8 +2,9 @@
 
 # Quick Use
 
-* download > 100M files in wolai/storage/chipyard(1.2.3.4)
+* download > 100M files in notion/storage/chipyard
 * ./build-setup.sh --skip-firesim --skip-marshal --skip-clean
+* change .conda-env/riscv-tools/riscv64-unknown-elf/lib/htif.ld 0x80000000->0xfe00000000 to fit the gc_acc tests
 
 # Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
 
