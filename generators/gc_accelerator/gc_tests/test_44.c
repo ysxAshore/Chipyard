@@ -29,7 +29,7 @@ int main(void) {
     par.regionAttrBiasedBase = (uintptr_t)shadow_addr(0x000000ffefe4b1b0);
     par.heapRegionBiasedBase = (uintptr_t)shadow_addr(0x000000ffef845dc0);
     par.parScanThreadStatePtr = (uintptr_t)shadow_addr(0x000000ffcc000bf0);
-    par.taskQueueBottomAddr = (uintptr_t)shadow_addr(0x000000fff0042fa0);
+    par.taskQueueBottom = 0x44;
     par.taskQueueElemsBase = (uintptr_t)shadow_addr(0x000000fff418c010);
     par.humogousReclaimCandidateBoolBase = (uintptr_t)shadow_addr(0x000000fff004ae40);
     par.cardTablePtr = (uintptr_t)shadow_addr(0x000000fff0043190);
@@ -1397,7 +1397,7 @@ int main(void) {
                          par.youngWordsBase, par.regionAttrBase,
                          par.plabAllocatorPtr, par.regionAttrBiasedBase,
                          par.heapRegionBiasedBase, par.parScanThreadStatePtr,
-                         par.taskQueueBottomAddr, par.taskQueueElemsBase,
+                         par.taskQueueBottom, par.taskQueueElemsBase,
                          par.humogousReclaimCandidateBoolBase, par.cardTablePtr,
                          par.g1h, par.intArrayKlass,
                          par.objectKlass, par.lockPtr,

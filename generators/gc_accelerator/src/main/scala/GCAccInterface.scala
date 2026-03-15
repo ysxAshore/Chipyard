@@ -146,7 +146,7 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val RegionAttrBiasedBase  = RegInit(0.U(GCElementWidth.W))
   val HeapRegionBiasedBase  = RegInit(0.U(GCElementWidth.W))
   val ParScanThreadStatePtr = RegInit(0.U(GCElementWidth.W))
-  val TaskQueue_BottomAddr  = RegInit(0.U(GCElementWidth.W))
+  val TaskQueue_Bottom  = RegInit(0.U(32.W))
   val TaskQueue_ElemsBase   = RegInit(0.U(GCElementWidth.W))
   val HumongousReclaimCandidatesBoolBase = RegInit(0.U(GCElementWidth.W))
   val CardTablePtr          = RegInit(0.U(GCElementWidth.W))
@@ -222,7 +222,7 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
     HeapRegionBiasedBase := io.cmd.bits.rs1
     ParScanThreadStatePtr := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 5.U) {
-    TaskQueue_BottomAddr := io.cmd.bits.rs1
+    TaskQueue_Bottom := io.cmd.bits.rs1(31, 0)
     TaskQueue_ElemsBase := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 6.U) {
     HumongousReclaimCandidatesBoolBase := io.cmd.bits.rs1
@@ -274,7 +274,7 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   acc.io.ctrl2top.RegionAttrBiasedBase := RegionAttrBiasedBase
   acc.io.ctrl2top.HeapRegionBiasedBase := HeapRegionBiasedBase
   acc.io.ctrl2top.ParScanThreadStatePtr := ParScanThreadStatePtr
-  acc.io.ctrl2top.TaskQueue_BottomAddr := TaskQueue_BottomAddr
+  acc.io.ctrl2top.TaskQueue_Bottom := TaskQueue_Bottom
   acc.io.ctrl2top.TaskQueue_ElemsBase := TaskQueue_ElemsBase
   acc.io.ctrl2top.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
   acc.io.ctrl2top.G1h := G1h

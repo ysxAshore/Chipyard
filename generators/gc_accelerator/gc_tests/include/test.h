@@ -57,7 +57,7 @@ struct HWGCParameters
   uint64_t regionAttrBiasedBase;
   uint64_t heapRegionBiasedBase;
   uint64_t parScanThreadStatePtr;
-  uint64_t taskQueueBottomAddr;
+  uint32_t taskQueueBottom;
   uint64_t taskQueueElemsBase;
   uint64_t humogousReclaimCandidateBoolBase;
   uint64_t cardTablePtr;

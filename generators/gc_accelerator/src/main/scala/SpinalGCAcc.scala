@@ -46,7 +46,7 @@ class SpinalGCAcc extends Module {
   acc.io.io_ctrl2top_RegionAttrBiasedBase := io.ctrl2top.RegionAttrBiasedBase
   acc.io.io_ctrl2top_HeapRegionBiasedBase := io.ctrl2top.HeapRegionBiasedBase
   acc.io.io_ctrl2top_ParScanThreadStatePtr := io.ctrl2top.ParScanThreadStatePtr
-  acc.io.io_ctrl2top_TaskQueue_BottomAddr := io.ctrl2top.TaskQueue_BottomAddr
+  acc.io.io_ctrl2top_TaskQueue_Bottom := io.ctrl2top.TaskQueue_Bottom
   acc.io.io_ctrl2top_TaskQueue_ElemsBase := io.ctrl2top.TaskQueue_ElemsBase
   acc.io.io_ctrl2top_HumongousReclaimCandidatesBoolBase := io.ctrl2top.HumongousReclaimCandidatesBoolBase
   acc.io.io_ctrl2top_G1h := io.ctrl2top.G1h

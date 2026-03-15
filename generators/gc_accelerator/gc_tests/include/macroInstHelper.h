@@ -50,8 +50,8 @@ void issue_config4(uint64_t HeapRegionBiasedBase, uint64_t ParScanThreadStatePtr
     INS_XRR(HeapRegionBiasedBase, ParScanThreadStatePtr, CONFIG4_FUNC);
 }
 
-void issue_config5(uint64_t TaskQueue_BottomAddr, uint64_t TaskQueue_ElemsBase){
-    INS_XRR(TaskQueue_BottomAddr, TaskQueue_ElemsBase, CONFIG5_FUNC);
+void issue_config5(uint32_t TaskQueue_Bottom, uint64_t TaskQueue_ElemsBase){
+    INS_XRR(TaskQueue_Bottom, TaskQueue_ElemsBase, CONFIG5_FUNC);
 }
 
 void issue_config6(uint64_t HumongousReclaimCandiatesBoolBase, uint64_t CardTablePtr){
@@ -98,7 +98,7 @@ void issue_config(
     uint64_t HeapRegionBiasedBase,
     uint64_t ParScanThreadStatePtr,
     // config5
-    uint64_t TaskQueue_BottomAddr,
+    uint64_t TaskQueue_Bottom,
     uint64_t TaskQueue_ElemsBase,
     // config6
     uint64_t HumongousReclaimCandiatesBoolBase,
@@ -124,7 +124,7 @@ void issue_config(
     issue_config2(YoungWordsBase, RegionAttrBase);
     issue_config3(PlabAllocatorPtr, RegionAttrBiasedBase);
     issue_config4(HeapRegionBiasedBase, ParScanThreadStatePtr);
-    issue_config5(TaskQueue_BottomAddr, TaskQueue_ElemsBase);
+    issue_config5(TaskQueue_Bottom, TaskQueue_ElemsBase);
     issue_config6(HumongousReclaimCandiatesBoolBase, CardTablePtr);
     issue_config7(G1h, IntArrayKlassObj);
     issue_config8(ObjectKlassPtr, LockPtr);
