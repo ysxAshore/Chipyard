@@ -5,6 +5,7 @@
 * download > 100M files in notion/storage/chipyard
 * ./build-setup.sh --skip-firesim --skip-marshal --skip-clean
 * change .conda-env/riscv-tools/riscv64-unknown-elf/lib/htif.ld 0x80000000->0xfe00000000 to fit the gc_acc tests
+* make CONFIG=GCAccSmallBoomConfig run-binary-debug-hex BINARY=../../generators/gc_accelerator/gc_tests/test_68.riscv -j6   
 
 # Chipyard Framework [![Test](https://github.com/ucb-bar/chipyard/actions/workflows/chipyard-run-tests.yml/badge.svg)](https://github.com/ucb-bar/chipyard/actions)
 
