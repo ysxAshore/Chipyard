@@ -17,7 +17,7 @@ trait HWParameters {
   val MMUAddrWidth = 64
   val MMUDataWidth = 256
 
-  val SourceMaxNum = 64
+  val SourceMaxNum = 32
   val SourceMaxNumBitSize = log2Ceil(SourceMaxNum) + 1
 }
 
