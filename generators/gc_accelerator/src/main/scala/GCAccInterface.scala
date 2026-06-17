@@ -156,7 +156,6 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val LockPtr = RegInit(0.U(GCElementWidth.W))
   val Thread = RegInit(0.U(GCElementWidth.W))
   val DummyRegion = RegInit(0.U(GCElementWidth.W))
-  val NumaPtr = RegInit(0.U(GCElementWidth.W))
   val CompressedOopBase = RegInit(0.U(GCElementWidth.W))
   val CompressedKlassPointerBase = RegInit(0.U(GCElementWidth.W))
   val CompressedFlag = RegInit(0.U(32.W))
@@ -237,7 +236,6 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
     Thread := io.cmd.bits.rs1
     DummyRegion := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 10.U) {
-    NumaPtr := io.cmd.bits.rs1
     CompressedOopBase := io.cmd.bits.rs2
   }.elsewhen(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 11.U){
     CompressedKlassPointerBase := io.cmd.bits.rs1
@@ -283,7 +281,6 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   acc.io.ctrl2top.LockPtr := LockPtr
   acc.io.ctrl2top.Thread := Thread
   acc.io.ctrl2top.DummyRegion := DummyRegion
-  acc.io.ctrl2top.NumaPtr := NumaPtr
   acc.io.ctrl2top.CompressedOopBase := CompressedOopBase
   acc.io.ctrl2top.CompressedKlassPointerBase := CompressedKlassPointerBase
   acc.io.ctrl2top.CompressedFlag := CompressedFlag

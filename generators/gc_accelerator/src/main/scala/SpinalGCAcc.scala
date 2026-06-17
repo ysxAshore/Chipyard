@@ -55,7 +55,6 @@ class SpinalGCAcc extends Module {
   acc.io.io_ctrl2top_LockPtr := io.ctrl2top.LockPtr
   acc.io.io_ctrl2top_Thread := io.ctrl2top.Thread
   acc.io.io_ctrl2top_DummyRegion := io.ctrl2top.DummyRegion
-  acc.io.io_ctrl2top_NumaPtr := io.ctrl2top.NumaPtr
   acc.io.io_ctrl2top_CompressedOopBase := io.ctrl2top.CompressedOopBase
   acc.io.io_ctrl2top_CompressedKlassPointerBase := io.ctrl2top.CompressedKlassPointerBase
   acc.io.io_ctrl2top_CompressedFlag := io.ctrl2top.CompressedFlag
