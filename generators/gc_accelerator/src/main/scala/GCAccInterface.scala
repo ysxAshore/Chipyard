@@ -184,7 +184,7 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val count = RegInit(0.U(64.W))
   val memNum_r = RegInit(0.U(64.W))
   val memNum_w = RegInit(0.U(64.W))
-  when(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
+  when(acc.io.ctrl2top.ctrl.fire){
     acc_busy := true.B
   }.elsewhen(acc.io.ctrl2top.Done){
     acc_busy := false.B
@@ -253,37 +253,37 @@ class GCAccTile(outer: RoCC2GCAcc) extends LazyRoCCModuleImp(outer) with HWParam
   val configCompleted = RegInit(false.B)
   when(io.cmd.fire && io.cmd.bits.inst.opcode === "h5B".U && io.cmd.bits.inst.funct === 11.U){
     configCompleted := true.B
-  }.elsewhen(acc.io.ctrl2top.Valid && acc.io.ctrl2top.Ready){
+  }.elsewhen(acc.io.ctrl2top.ctrl.fire){
     configCompleted := false.B
   }
 
-  acc.io.ctrl2top.Valid := configCompleted
-  acc.io.ctrl2top.ChunkSize := ChunkSize
-  acc.io.ctrl2top.CardTablePtr := CardTablePtr
-  acc.io.ctrl2top.AgeThreshold := AgeThreshold
-  acc.io.ctrl2top.StepperOffset := StepperOffset
-  acc.io.ctrl2top.YoungWordsBase := YoungWordsBase
-  acc.io.ctrl2top.RegionAttrBase := RegionAttrBase
-  acc.io.ctrl2top.HeapRegionBias := HeapRegionBias
-  acc.io.ctrl2top.PlabAllocatorPtr := PlabAllocatorPtr
-  acc.io.ctrl2top.RegionAttrShiftBy := RegionAttrShiftBy
-  acc.io.ctrl2top.HeapRegionShiftBy := HeapRegionShiftBy
-  acc.io.ctrl2top.LogOfHRGrainBytes := LogOfHRGrainBytes
-  acc.io.ctrl2top.RegionAttrBiasedBase := RegionAttrBiasedBase
-  acc.io.ctrl2top.HeapRegionBiasedBase := HeapRegionBiasedBase
-  acc.io.ctrl2top.ParScanThreadStatePtr := ParScanThreadStatePtr
-  acc.io.ctrl2top.TaskQueue_Bottom := TaskQueue_Bottom
-  acc.io.ctrl2top.TaskQueue_ElemsBase := TaskQueue_ElemsBase
-  acc.io.ctrl2top.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
-  acc.io.ctrl2top.G1h := G1h
-  acc.io.ctrl2top.IntArrayKlassObj := IntArrayKlassObj
-  acc.io.ctrl2top.ObjectKlass := ObjectKlass
-  acc.io.ctrl2top.LockPtr := LockPtr
-  acc.io.ctrl2top.Thread := Thread
-  acc.io.ctrl2top.DummyRegion := DummyRegion
-  acc.io.ctrl2top.CompressedOopBase := CompressedOopBase
-  acc.io.ctrl2top.CompressedKlassPointerBase := CompressedKlassPointerBase
-  acc.io.ctrl2top.CompressedFlag := CompressedFlag
+  acc.io.ctrl2top.ctrl.valid := configCompleted
+  acc.io.ctrl2top.ctrl.bits.ChunkSize := ChunkSize
+  acc.io.ctrl2top.ctrl.bits.CardTablePtr := CardTablePtr
+  acc.io.ctrl2top.ctrl.bits.AgeThreshold := AgeThreshold
+  acc.io.ctrl2top.ctrl.bits.StepperOffset := StepperOffset
+  acc.io.ctrl2top.ctrl.bits.YoungWordsBase := YoungWordsBase
+  acc.io.ctrl2top.ctrl.bits.RegionAttrBase := RegionAttrBase
+  acc.io.ctrl2top.ctrl.bits.HeapRegionBias := HeapRegionBias
+  acc.io.ctrl2top.ctrl.bits.PlabAllocatorPtr := PlabAllocatorPtr
+  acc.io.ctrl2top.ctrl.bits.RegionAttrShiftBy := RegionAttrShiftBy
+  acc.io.ctrl2top.ctrl.bits.HeapRegionShiftBy := HeapRegionShiftBy
+  acc.io.ctrl2top.ctrl.bits.LogOfHRGrainBytes := LogOfHRGrainBytes
+  acc.io.ctrl2top.ctrl.bits.RegionAttrBiasedBase := RegionAttrBiasedBase
+  acc.io.ctrl2top.ctrl.bits.HeapRegionBiasedBase := HeapRegionBiasedBase
+  acc.io.ctrl2top.ctrl.bits.ParScanThreadStatePtr := ParScanThreadStatePtr
+  acc.io.ctrl2top.ctrl.bits.TaskQueue_Bottom := TaskQueue_Bottom
+  acc.io.ctrl2top.ctrl.bits.TaskQueue_ElemsBase := TaskQueue_ElemsBase
+  acc.io.ctrl2top.ctrl.bits.HumongousReclaimCandidatesBoolBase := HumongousReclaimCandidatesBoolBase
+  acc.io.ctrl2top.ctrl.bits.G1h := G1h
+  acc.io.ctrl2top.ctrl.bits.IntArrayKlassObj := IntArrayKlassObj
+  acc.io.ctrl2top.ctrl.bits.ObjectKlass := ObjectKlass
+  acc.io.ctrl2top.ctrl.bits.LockPtr := LockPtr
+  acc.io.ctrl2top.ctrl.bits.Thread := Thread
+  acc.io.ctrl2top.ctrl.bits.DummyRegion := DummyRegion
+  acc.io.ctrl2top.ctrl.bits.CompressedOopBase := CompressedOopBase
+  acc.io.ctrl2top.ctrl.bits.CompressedKlassPointerBase := CompressedKlassPointerBase
+  acc.io.ctrl2top.ctrl.bits.CompressedFlag := CompressedFlag
 
   mem.io.mmu <> acc.io.mmu2llc
 }
